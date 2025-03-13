@@ -4,24 +4,36 @@ SSUMC 8기 Spring Boot 스터디 C조
 ## 💻 Member
 |카라|모리|한스|로기|
 | :---------:|:----------:|:----------:|:----------:|
-|장효원|조세훈|한동범|김다은|
+|[장효원](https://github.com/hyowon0204)|[조세훈](https://github.com/Dimo-2562)|[한동범](https://github.com/Handongbeom)|[김다은](https://github.com/daeun088)|
 
 ## 📁 디렉토리 구조
+- src 디렉토리를 실제 작업을 진행하는 Spring Boot의 src와 일치시켜 주세요.
+- 미션 및 실습, 주차를 정확히 구분하기 위해 아래의 commit 규칙을 ‼️반드시‼️ 준수하여 commit 후 push 해 주세요.
 ```bash
 ├─.github
 │  └─PULL_REQUEST_TEMPLATE
 │  └─ISSUE_TEMPLATE
 ├─README.md
-├─docs
-│  └─chapter1
-            Ch01Keyword.md
-            Ch01Keyword.txt
 └─src
-    ├─mission
-    │  └─chapter1
-    └─practice
-        └─chapter1
+    ├─main
+    │
+    └─test
+    │
+    └─...
+            
 ``` 
+## 🎨 commit 규칙
+- 해당 commit이 미션에 관한 것일 경우: "mission/#해당 주차"
+```
+Ex) 1주차 미션 수행 후
+mission/#01
+```
+- 해당 commit이 실습에 관한 것일 경우: "practice/#해당 주차"
+```
+Ex) 2주차 실습 수행 후
+practice/#02
+```
+- 해당 주차에 미션이나 실습이 없는 경우, 있는 주차에만 수행하시면 됩니다.
 
 ## 🌳 branch 규칙
 ```bash
