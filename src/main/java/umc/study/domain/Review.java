@@ -1,11 +1,7 @@
 package umc.study.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
 import umc.study.domain.common.BaseEntity;
 
 @Entity
@@ -26,4 +22,12 @@ public class Review extends BaseEntity {
     private String body;
 
     private Float score;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "store_id")
+    private Store store;
 }

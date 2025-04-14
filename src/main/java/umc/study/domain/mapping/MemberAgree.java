@@ -2,7 +2,6 @@ package umc.study.domain.mapping;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
 import umc.study.domain.Member;
 import umc.study.domain.Terms;
 import umc.study.domain.common.BaseEntity;
