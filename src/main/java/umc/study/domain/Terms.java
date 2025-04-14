@@ -3,6 +3,7 @@ package umc.study.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.Id;
+import umc.study.domain.common.BaseEntity;
 import umc.study.domain.mapping.MemberAgree;
 
 import java.util.ArrayList;
@@ -13,14 +14,16 @@ import java.util.List;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Terms {
+public class Terms extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 20)
     private String title;
 
+    @Column(columnDefinition = "TEXT")
     private String body;
 
     private Boolean optional;
