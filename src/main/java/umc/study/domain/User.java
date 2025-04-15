@@ -6,9 +6,9 @@ import umc.study.domain.common.BaseEntity;
 import umc.study.domain.enums.Gender;
 import umc.study.domain.enums.MemberStatus;
 import umc.study.domain.enums.SocialType;
-import umc.study.domain.mapping.MemberAgree;
-import umc.study.domain.mapping.MemberMission;
-import umc.study.domain.mapping.MemberPrefer;
+import umc.study.domain.mapping.Agreement;
+import umc.study.domain.mapping.UserMission;
+import umc.study.domain.mapping.PreferenceFood;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Member extends BaseEntity {
+public class User extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,6 +38,11 @@ public class Member extends BaseEntity {
     @Column(nullable = false, length = 10)
     private Gender gender;
 
+    private Integer age;
+
+    @Column(name = "birth_date", nullable = false)
+    private LocalDate birthDate;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 10)
     private SocialType socialType;
@@ -53,15 +58,18 @@ public class Member extends BaseEntity {
 
     private Integer point;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<MemberAgree> memberAgreeList = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Agreement> agreementList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<MemberPrefer> memberPreferList = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<PreferenceFood> preferenceFoodList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Review> reviewList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    private List<MemberMission> memberMissionList = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserMission> userMissionList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Ask> askList = new ArrayList<>();
 }

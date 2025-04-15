@@ -2,8 +2,8 @@ package umc.study.domain.mapping;
 
 import jakarta.persistence.*;
 import lombok.*;
-import umc.study.domain.FoodCategory;
-import umc.study.domain.Member;
+import umc.study.domain.User;
+import umc.study.domain.Terms;
 import umc.study.domain.common.BaseEntity;
 
 @Entity
@@ -11,7 +11,7 @@ import umc.study.domain.common.BaseEntity;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class MemberPrefer extends BaseEntity {
+public class Agreement extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,11 +19,11 @@ public class MemberPrefer extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    private Member member;
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
-    private FoodCategory foodCategory;
+    @JoinColumn(name = "terms_id")
+    private Terms terms;
 
 
 }

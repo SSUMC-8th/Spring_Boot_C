@@ -3,7 +3,7 @@ package umc.study.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import umc.study.domain.common.BaseEntity;
-import umc.study.domain.mapping.MemberAgree;
+import umc.study.domain.mapping.Agreement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,5 +28,5 @@ public class Terms extends BaseEntity {
     private Boolean optional;
 
     @OneToMany(mappedBy = "terms", cascade = CascadeType.ALL)
-    private List<MemberAgree> memberAgreeList = new ArrayList<>();
+    private List<Agreement> agreementList = new ArrayList<>();
 }

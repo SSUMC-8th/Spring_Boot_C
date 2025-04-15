@@ -3,7 +3,7 @@ package umc.study.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import umc.study.domain.common.BaseEntity;
-import umc.study.domain.mapping.MemberMission;
+import umc.study.domain.mapping.UserMission;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class Mission extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer reward;
+    private Integer point;
 
     private LocalDate deadline;
 
@@ -32,5 +32,5 @@ public class Mission extends BaseEntity {
     private Store store;
 
     @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
-    private List<MemberMission> memberMissionList = new ArrayList<>();
+    private List<UserMission> userMissionList = new ArrayList<>();
 }
