@@ -15,6 +15,6 @@ public class Location {
 
     private String address;
 
-    @OneToOne(mappedBy = "location", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
     private Store store;
 }
