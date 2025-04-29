@@ -44,4 +44,15 @@ public class Store extends BaseEntity {
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<StoreOpeningHours> openingHourList = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return "Store{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", rating=" + rating +
+                ", location=" + (location != null ? location.getName() : "N/A") + // location의 이름 출력
+                '}';
+    }
+
 }

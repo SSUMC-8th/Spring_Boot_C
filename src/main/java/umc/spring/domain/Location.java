@@ -19,6 +19,8 @@ public class Location extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+
     @Column(precision = 10, scale = 7)
     private BigDecimal latitude;
 
