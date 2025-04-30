@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring.iml" filepath="$PROJECT_DIR$/.idea/modules/spring.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring.main.iml" filepath="$PROJECT_DIR$/.idea/modules/spring.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring.querydsl.iml" filepath="$PROJECT_DIR$/.idea/modules/spring.querydsl.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/spring.test.iml" filepath="$PROJECT_DIR$/.idea/modules/spring.test.iml" />
     </modules>
   </component>

@@ -42,4 +42,15 @@ public class Store extends BaseEntity {
     private List<StoreTime> StoreTimeList = new ArrayList<>();
 
 
+    @Override
+    public String toString() {
+        return "Store{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", score=" + score +
+                ", region=" + (region != null ? region.getName() : "N/A") + // region의 이름 출력
+                '}';
+    }
+
 }
