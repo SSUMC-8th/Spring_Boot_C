@@ -1,0 +1,28 @@
+# QueryDSL generated files
+**/Q*.java
+/build
+/.idea
+.gradle
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# QueryDSL Q파일
+**/Q*.java
+
+# OS 관련
+.DS_Store
+Thumbs.db
+
+# 로그/캐시
+*.log
+*.lock
