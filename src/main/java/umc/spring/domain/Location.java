@@ -3,6 +3,9 @@ package umc.spring.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Builder
@@ -16,5 +19,5 @@ public class Location {
     private String address;
 
     @OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
-    private Store store;
+    private List<Store> storeList = new ArrayList<>();
 }
