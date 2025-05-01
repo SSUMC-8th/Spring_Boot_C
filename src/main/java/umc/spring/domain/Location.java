@@ -19,6 +19,8 @@ public class Location extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+
     @Column(precision = 10, scale = 7)
     private BigDecimal latitude;
 
@@ -26,7 +28,7 @@ public class Location extends BaseEntity {
     private BigDecimal longitude;
 
     // 양방향 매핑 - Location과 Store 관계 (1:N)
-    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "location")
     private List<Store> storeList = new ArrayList<>();
 
 }

@@ -3,8 +3,10 @@
 
 # .github, README.md, src 디렉터리만 예외처리
 !.github/
+!.github/**
 !README.md
 !src/
+!src/**
 !.gitignore
 
 # .gradle 관련 파일과 디렉터리 명시적으로 무시

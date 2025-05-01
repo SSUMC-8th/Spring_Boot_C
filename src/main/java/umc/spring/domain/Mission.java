@@ -33,6 +33,6 @@ public class Mission extends BaseEntity {
 
     private Long point;
 
-    @OneToMany(mappedBy = "mission")
+    @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
     private List<MemberMission> memberMissionList = new ArrayList<>();
 }
