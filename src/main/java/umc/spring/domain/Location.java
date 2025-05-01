@@ -2,13 +2,17 @@ package umc.spring.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import umc.spring.domain.common.BaseEntity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Location {
+public class Location extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,5 +20,5 @@ public class Location {
     private String address;
 
     @OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
-    private Store store;
+    private List<Store> storeList = new ArrayList<>();
 }
