@@ -24,6 +24,8 @@ public class QStore extends EntityPathBase<Store> {
 
     public final umc.spring.domain.common.QBaseEntity _super = new umc.spring.domain.common.QBaseEntity(this);
 
+    public final StringPath address = createString("address");
+
     public final EnumPath<umc.spring.domain.enums.FoodCategory> category = createEnum("category", umc.spring.domain.enums.FoodCategory.class);
 
     //inherited

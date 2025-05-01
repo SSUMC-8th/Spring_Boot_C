@@ -20,11 +20,19 @@ public class QLocation extends EntityPathBase<Location> {
 
     public static final QLocation location = new QLocation("location");
 
+    public final umc.spring.domain.common.QBaseEntity _super = new umc.spring.domain.common.QBaseEntity(this);
+
     public final StringPath address = createString("address");
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final ListPath<Store, QStore> storeList = this.<Store, QStore>createList("storeList", Store.class, QStore.class, PathInits.DIRECT2);
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 
     public QLocation(String variable) {
         super(Location.class, forVariable(variable));

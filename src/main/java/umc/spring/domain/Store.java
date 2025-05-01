@@ -24,6 +24,8 @@ public class Store extends BaseEntity {
 
     private Float score;
 
+    private String address;
+
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(20)")
     private FoodCategory category;
@@ -47,5 +49,16 @@ public class Store extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location_id")
     private Location location;
+
+    @Override
+    public String toString() {
+        return "Store{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", score=" + score +
+                ", region=" + (location != null ? location.getAddress() : "N/A") +
+                '}';
+    }
 
 }
