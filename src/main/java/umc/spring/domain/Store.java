@@ -22,6 +22,8 @@ public class Store extends BaseEntity {
     @Column(nullable = false, length = 20)
     private String name;
 
+    private Float score;
+
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(20)")
     private FoodCategory category;

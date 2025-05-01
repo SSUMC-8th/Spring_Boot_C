@@ -39,6 +39,8 @@ public class QStore extends EntityPathBase<Store> {
 
     public final ListPath<Review, QReview> reviewListList = this.<Review, QReview>createList("reviewListList", Review.class, QReview.class, PathInits.DIRECT2);
 
+    public final NumberPath<Float> score = createNumber("score", Float.class);
+
     public final EnumPath<umc.spring.domain.enums.StoreStatus> status = createEnum("status", umc.spring.domain.enums.StoreStatus.class);
 
     public final ListPath<StoreHour, QStoreHour> storeHourList = this.<StoreHour, QStoreHour>createList("storeHourList", StoreHour.class, QStoreHour.class, PathInits.DIRECT2);
