@@ -3,6 +3,7 @@
 
 # .github, README.md, src 디렉터리만 예외처리
 !.github/
+!.github/**
 !README.md
 !src/
 !src/**
