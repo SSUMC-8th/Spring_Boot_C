@@ -28,7 +28,7 @@ public class Store extends BaseEntity {
     private Float score;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 10, nullable = false)
+    @Column(length = 10, nullable = true) // 바꿔야함
     private StoreCategory category;
 
     @ManyToOne(fetch = FetchType.LAZY)

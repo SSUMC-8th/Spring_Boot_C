@@ -1,28 +1,23 @@
-# QueryDSL generated files
-**/Q*.java
-/build
-/.idea
-.gradle
+# 모든 파일을 무시 (기본 설정)
+*
 
-# Gradle
+# .github, README.md, src 디렉터리만 예외처리
+!.github/
+!.github/**
+!README.md
+!src/
+!src/**
+!.gitignore
+
+# .gradle 관련 파일과 디렉터리 명시적으로 무시
 .gradle/
-build/
-!gradle/wrapper/gradle-wrapper.jar
-!gradle/wrapper/gradle-wrapper.properties
+*.gradle
+gradlew
+gradlew.bat
 
-# IntelliJ
+# IDE 관련 파일과 디렉터리 무시
 .idea/
 *.iml
-*.iws
-*.ipr
 
-# QueryDSL Q파일
-**/Q*.java
-
-# OS 관련
-.DS_Store
-Thumbs.db
-
-# 로그/캐시
-*.log
-*.lock
+# 빌드 결과물 무시
+build/

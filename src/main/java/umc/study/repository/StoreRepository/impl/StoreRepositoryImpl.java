@@ -1,4 +1,4 @@
-package umc.study.repository.StoreRepository;
+package umc.study.repository.StoreRepository.impl;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -6,12 +6,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import umc.study.domain.QStore;
 import umc.study.domain.Store;
+import umc.study.repository.StoreRepository.StoreRepositoryCustom;
 
 import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class StoreRepositoryImpl implements StoreRepositoryCustom{
+public class StoreRepositoryImpl implements StoreRepositoryCustom {
     private final JPAQueryFactory jpaQueryFactory;
     private final QStore store = QStore.store;
 
