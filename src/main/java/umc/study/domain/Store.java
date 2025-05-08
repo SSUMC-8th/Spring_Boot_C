@@ -28,7 +28,7 @@ public class Store extends BaseEntity {
     private Float score;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 10, nullable = false)
+    @Column(length = 10, nullable = true) // 바꿔야함
     private StoreCategory category;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -41,5 +41,16 @@ public class Store extends BaseEntity {
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<StoreTime> StoreTimeList = new ArrayList<>();
 
+
+    @Override
+    public String toString() {
+        return "Store{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", score=" + score +
+                ", region=" + (region != null ? region.getName() : "N/A") + // region의 이름 출력
+                '}';
+    }
 
 }
