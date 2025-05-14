@@ -32,7 +32,7 @@ public class StoreRestController {
         return ApiResponse.onSuccess(StoreConverter.toReveiwResultDTO(review));
     }
 
-    @PostMapping("/stores/{storeId}/missions")
+    @PostMapping("/{storeId}/missions")
     public ApiResponse<MissionResponseDTO.missionResultDTO> createMission(@RequestBody @Valid MissionRequestDTO.MissionDTO request,
                                                                           @ExistStore @PathVariable(name = "storeId") Long storeId) {
         Mission mission = storeCommandService.createMission(storeId,request);

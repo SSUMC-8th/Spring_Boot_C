@@ -19,4 +19,10 @@ public class MemberQueryServiceImpl implements MemberQueryService {
     public Optional<User> findMember(Long id) {
         return memberRepository.findById(id);
     }
+
+    @Override
+    public Optional<User> findAnyMember() {
+        return memberRepository.findAll().stream().findFirst();  // 아무 사용자 한 명 (첫 번째)
+    }
+
 }
