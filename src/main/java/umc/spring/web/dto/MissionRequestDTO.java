@@ -6,17 +6,15 @@ import lombok.Getter;
 
 import java.time.LocalDate;
 
-public class StoreRequestDTO {
+public class MissionRequestDTO {
 
     @Getter
-    public static class ReveiwDTO{
-        @NotBlank
-        String title;
-        @NotNull
-        Float rating;
+    public static class MissionDTO{
         @NotBlank
         String content;
         @NotNull
-        LocalDate date;
+        Float point;
+        @NotNull
+        LocalDate deadline;
     }
 }
