@@ -26,4 +26,17 @@ public class PreferenceFood extends BaseEntity {
     private FoodCategory foodCategory;
 
 
+    public void setUser(User user){
+        if(this.user != null)
+            user.getPreferenceFoodList().remove(this);
+        this.user = user;
+        user.getPreferenceFoodList().add(this);
+    }
+
+    public void setFoodCategory(FoodCategory foodCategory){
+        this.foodCategory = foodCategory;
+    }
+
+
+
 }
