@@ -2,12 +2,13 @@ package umc.spring.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.enums.NotificationType;
 
 @Entity
 @Getter
-@Builder
+@SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Notification extends BaseEntity {

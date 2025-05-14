@@ -2,12 +2,13 @@ package umc.spring.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.enums.FoodCategory;
 
 @Entity
 @Getter
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Food extends BaseEntity {
@@ -18,5 +19,4 @@ public class Food extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private FoodCategory type;
-
 }

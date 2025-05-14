@@ -1,4 +1,4 @@
-package umc.spring.repository.StoreRepository;
+package umc.spring.repository.storerepository;
 
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class StoreRepositoryImpl implements StoreRepositoryCustom {
+public class StoreRepositoryCustomImpl implements StoreRepositoryCustom{
 
     private final JPAQueryFactory jpaQueryFactory;
     private final QStore store = QStore.store;

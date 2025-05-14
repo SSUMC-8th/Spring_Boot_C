@@ -1,4 +1,4 @@
-package umc.spring.repository;
+package umc.spring.repository.memberrepository;
 
 import umc.spring.dto.MemberDto;
 import umc.spring.dto.MissionCursorResponseDto;

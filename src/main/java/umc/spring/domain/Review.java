@@ -2,6 +2,7 @@ package umc.spring.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import umc.spring.domain.common.BaseEntity;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Getter
-@Builder
+@SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Review extends BaseEntity {
@@ -31,5 +32,6 @@ public class Review extends BaseEntity {
     private String content;
 
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
+    @Builder.Default
     private List<ReviewImage> reviewImageList = new ArrayList<>();
 }

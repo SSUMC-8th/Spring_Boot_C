@@ -1,4 +1,4 @@
-package umc.spring.service.TempService;
+package umc.spring.service.tempservice;
 
 public class TempCommandServiceImpl implements TempCommandService {
 }

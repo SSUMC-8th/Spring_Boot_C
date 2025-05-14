@@ -1,4 +1,4 @@
-package umc.spring.repository;
+package umc.spring.repository.memberrepository;
 
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -8,6 +8,7 @@ import com.querydsl.core.types.dsl.StringExpression;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 import umc.spring.domain.QFood;
 import umc.spring.domain.QMember;
 import umc.spring.domain.QMission;
@@ -17,7 +18,6 @@ import umc.spring.domain.mapping.QMemberMission;
 import umc.spring.dto.MemberDto;
 import umc.spring.dto.MissionCursorResponseDto;
 
-import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -55,6 +55,7 @@ import java.util.List;
  */
 
 @RequiredArgsConstructor
+@Repository
 public class MemberRepositoryCustomImpl implements MemberRepositoryCustom {
     private final JPAQueryFactory queryFactory;
 

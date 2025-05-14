@@ -2,6 +2,7 @@ package umc.spring.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import umc.spring.domain.common.BaseEntity;
 
 import java.math.BigDecimal;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Getter
-@Builder
+@SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Location extends BaseEntity {
@@ -29,6 +30,7 @@ public class Location extends BaseEntity {
 
     // 양방향 매핑 - Location과 Store 관계 (1:N)
     @OneToMany(mappedBy = "location")
+    @Builder.Default
     private List<Store> storeList = new ArrayList<>();
 
 }
