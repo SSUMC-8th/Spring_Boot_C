@@ -23,6 +23,17 @@ public enum ErrorStatus implements BaseErrorCode {
     // 음식 관련 에러
     FOOD_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "FOOD4001", "음식 카테고리가 없습니다."),
 
+    // 위치 관련 에러
+    LOCATION_NOT_FOUND(HttpStatus.NOT_FOUND, "LOCATION4001", "위치가 없습니다."),
+
+    // 가게 관련 에러
+    STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "REVIEW4002", "가게를 찾을 수 없습니다."),
+
+    // 미션 관련 에러
+    MISSION_NOT_FOUND(HttpStatus.NOT_FOUND, "MISSION4001", "미션을 찾을 수 없습니다."),
+    MISSION_EXPIRED(HttpStatus.BAD_REQUEST, "MISSION4002", "만료된 미션입니다."),
+    MISSION_ALREADY_ACCEPTED(HttpStatus.BAD_REQUEST, "MISSION4003", "이미 도전 중인 미션입니다."),
+
     // 예시
     ARTICLE_NOT_FOUND(HttpStatus.NOT_FOUND, "ARTICLE4001", "게시글이 없습니다."),
     TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "이거는 테스트");

@@ -45,6 +45,10 @@ public class Store extends BaseEntity {
     @Builder.Default
     private List<StoreOpeningHours> openingHourList = new ArrayList<>();
 
+    public void updateRating(Double rating) {
+        this.rating = rating;
+    }
+
     @Override
     public String toString() {
         return "Store{" +

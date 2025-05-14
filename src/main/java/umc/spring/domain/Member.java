@@ -90,4 +90,11 @@ public class Member extends BaseEntity {
     @Builder.Default
     private List<Notification> notificationList = new ArrayList<>();
 
+    public void addPoint(Long additionalPoints) {
+        if (this.point == null) {
+            this.point = 0L;
+        }
+        this.point += additionalPoints;
+    }
+
 }
