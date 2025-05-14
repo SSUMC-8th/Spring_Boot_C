@@ -53,7 +53,6 @@ public class Member extends BaseEntity {
     @ColumnDefault("0")
     private  Integer point;
 
-    @Column(nullable = false)
     private LocalDate birth;
 
     @Column(length = 15)

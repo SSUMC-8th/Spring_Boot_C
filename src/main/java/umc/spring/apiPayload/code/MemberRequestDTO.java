@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import umc.spring.validation.annotation.ExistCategories;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class MemberRequestDTO {
@@ -16,12 +17,8 @@ public class MemberRequestDTO {
         @NotNull
         Integer gender;
         @NotNull
-        Integer birthYear;
+        LocalDateTime birth;
         @NotNull
-        Integer birthMonth;
-        @NotNull
-        Integer birthDay;
-        @Size(min = 5, max = 12)
         String address;
         @Size(min = 5, max = 12)
         String specAddress;

@@ -5,6 +5,7 @@ import umc.spring.apiPayload.code.MemberResponseDTO;
 import umc.spring.domain.Member;
 import umc.spring.domain.enums.Gender;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -32,10 +33,12 @@ public class MemberConverter {
         }
 
         return Member.builder()
-                .address(request.getAddress())
+                .address(request.getAddress())                         // 주소는 String
+                .birth(request.getBirth().toLocalDate())
                 .gender(gender)
                 .name(request.getName())
                 .memberAgreeList(new ArrayList<>())
                 .build();
+
     }
 }
