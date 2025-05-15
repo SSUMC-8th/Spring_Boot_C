@@ -1,0 +1,28 @@
+package umc.spring.service.MemberService;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import umc.spring.domain.User;
+import umc.spring.repository.MemberRepository.MemberRepository;
+
+import java.util.Optional;
+
+@Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
+public class MemberQueryServiceImpl implements MemberQueryService {
+
+    private final MemberRepository memberRepository;
+
+    @Override
+    public Optional<User> findMember(Long id) {
+        return memberRepository.findById(id);
+    }
+
+    @Override
+    public Optional<User> findAnyMember() {
+        return memberRepository.findAll().stream().findFirst();  // 아무 사용자 한 명 (첫 번째)
+    }
+
+}

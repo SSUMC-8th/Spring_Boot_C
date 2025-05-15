@@ -43,7 +43,7 @@ public class QUser extends EntityPathBase<User> {
 
     public final StringPath phone_number = createString("phone_number");
 
-    public final NumberPath<Float> point = createNumber("point", Float.class);
+    public final NumberPath<Integer> point = createNumber("point", Integer.class);
 
     public final ListPath<Review, QReview> reviewList = this.<Review, QReview>createList("reviewList", Review.class, QReview.class, PathInits.DIRECT2);
 

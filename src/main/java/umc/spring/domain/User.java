@@ -2,6 +2,9 @@ package umc.spring.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.enums.Gender;
 import umc.spring.domain.enums.SocialType;
@@ -16,7 +19,10 @@ import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @Builder
+@DynamicUpdate
+@DynamicInsert
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User extends BaseEntity {
@@ -27,23 +33,24 @@ public class User extends BaseEntity {
     @Column(nullable = false, length = 20)
     private String name;
 
-    @Column(nullable = false, length = 40)
+    //@Column(nullable = false, length = 40)
     private String email;
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(10)")
     private Gender gender;
 
-    @Column(nullable = false, length = 40)
+//    @Column(nullable = false, length = 40)
     private String phone_number;
 
     @Column(nullable = false, length = 40)
     private String address;
 
-    @Column(nullable = false, length = 20)
+    @Column(nullable = true, length = 20)
     private String birth;
 
-    private float point;
+    @ColumnDefault("0")
+    private Integer point;
 
     @Enumerated(EnumType.STRING)
     private SocialType socialType;

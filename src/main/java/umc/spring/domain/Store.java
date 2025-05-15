@@ -2,6 +2,8 @@ package umc.spring.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.enums.FoodCategory;
 import umc.spring.domain.enums.StoreStatus;
@@ -11,7 +13,10 @@ import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @Builder
+@DynamicUpdate
+@DynamicInsert
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Store extends BaseEntity {
