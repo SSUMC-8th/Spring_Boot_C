@@ -2,6 +2,7 @@ package umc.spring.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import umc.spring.domain.enums.NotificationType;
 import umc.spring.domain.mapping.MemberNotificationSetting;
 
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Getter
-@Builder
+@SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class NotificationInfo {
@@ -27,5 +28,6 @@ public class NotificationInfo {
     private String description;
 
     @OneToMany(mappedBy = "notificationInfo", cascade = CascadeType.ALL)
+    @Builder.Default
     private List<MemberNotificationSetting> memberNotificationSettingList = new ArrayList<>();
 }

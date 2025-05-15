@@ -1,7 +1,13 @@
 package umc.spring.domain;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.enums.Gender;
 import umc.spring.domain.enums.MemberStatus;
@@ -16,7 +22,9 @@ import java.util.List;
 
 @Entity
 @Getter
-@Builder
+@DynamicUpdate
+@DynamicInsert
+@SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Member extends BaseEntity {
@@ -25,39 +33,68 @@ public class Member extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 20)
+    @NotNull
+    @Column(length = 20, nullable = false)
     private String name;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 10)
     private Gender gender;
 
+    @Past
     private LocalDate birthDate;
 
+    @Column(length = 100)
     private String address;
 
+    @Column(length = 100)
+    private String specAddress;
+
     @Enumerated(EnumType.STRING)
+    @Column(length = 15)
+    @ColumnDefault("'ACTIVE'")
     private MemberStatus status;
 
     private LocalDateTime inactiveDate;
 
+    @Email(message = "이메일 형식이 올바르지 않습니다")
+    @Column(length = 50, unique = true)
+    @Nullable
     private String email;
 
+    @Column(length = 20)
+    @Nullable
     private String phoneNum;
 
+    @ColumnDefault("0")
     private Long point;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private List<MemberAgree> memberAgreeList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private List<MemberPrefer> memberPreferList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private List<Review> reviewList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private List<MemberMission> memberMissionList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private List<Notification> notificationList = new ArrayList<>();
+
+    public void addPoint(Long additionalPoints) {
+        if (this.point == null) {
+            this.point = 0L;
+        }
+        this.point += additionalPoints;
+    }
+
 }

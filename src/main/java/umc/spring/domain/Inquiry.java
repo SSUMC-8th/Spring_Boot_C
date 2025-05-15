@@ -2,6 +2,7 @@ package umc.spring.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import umc.spring.domain.enums.InquiryType;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Getter
-@Builder
+@SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class Inquiry {
@@ -32,6 +33,7 @@ public class Inquiry {
     private String content;
 
     @OneToMany(mappedBy = "inquiry", cascade = CascadeType.ALL)
+    @Builder.Default
     private List<InquiryImage> inquiryImageList = new ArrayList<>();
 
 }

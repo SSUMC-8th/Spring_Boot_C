@@ -5,6 +5,7 @@ import lombok.*;
 import umc.spring.domain.Food;
 import umc.spring.domain.Member;
 import umc.spring.domain.common.BaseEntity;
+import umc.spring.domain.enums.FoodCategory;
 
 @Entity
 @Getter
@@ -21,8 +22,19 @@ public class MemberPrefer extends BaseEntity {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "food_id")
-    private Food food;
+    @Enumerated(EnumType.STRING)
+    private FoodCategory foodCategory;
+
+    public static MemberPrefer createMemberPrefer(Member member, FoodCategory foodCategory) {
+        MemberPrefer memberPrefer = MemberPrefer.builder()
+                .foodCategory(foodCategory)
+                .member(member)
+                .build();
+
+        // 양방향 관계 설정 (Member 쪽에도 이 MemberPrefer 추가)
+        member.getMemberPreferList().add(memberPrefer);
+
+        return memberPrefer;
+    }
 
 }
