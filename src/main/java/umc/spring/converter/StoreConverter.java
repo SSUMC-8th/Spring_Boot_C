@@ -57,7 +57,6 @@ public class StoreConverter {
     public static ReviewResponseDTO.ReviewPreViewListDTO reviewPreViewListDTO(Page<Review> reviewList){
 
         List<ReviewResponseDTO.ReviewPreViewDTO> reviewPreViewDTOList = reviewList.stream()
-                .peek(review -> System.out.println("리뷰 ID: " + review.getId()))
                 .map(StoreConverter::reviewPreViewDTO).collect(Collectors.toList());
 
         return ReviewResponseDTO.ReviewPreViewListDTO.builder()
@@ -67,6 +66,29 @@ public class StoreConverter {
                 .totalElements(reviewList.getTotalElements())
                 .listSize(reviewPreViewDTOList.size())
                 .reviewList(reviewPreViewDTOList)
+                .build();
+    }
+
+    public static MissionResponseDTO.MissionPreViewDTO missionPreViewDTO(Mission mission) {
+        return MissionResponseDTO.MissionPreViewDTO.builder()
+                .name(mission.getStore().getName())
+                .category(mission.getStore().getCategory().toString())
+                .point(mission.getPoint())
+                .content(mission.getContent())
+                .build();
+    }
+
+    public static MissionResponseDTO.MissionPreViewListDTO missionPreViewListDTO(Page<Mission> missionList) {
+        List<MissionResponseDTO.MissionPreViewDTO> missionPreViewDTOList = missionList.stream()
+                .map(StoreConverter::missionPreViewDTO).collect(Collectors.toList());
+
+        return MissionResponseDTO.MissionPreViewListDTO.builder()
+                .isLast(missionList.isLast())
+                .isFirst(missionList.isFirst())
+                .totalPage(missionList.getTotalPages())
+                .totalElements(missionList.getTotalElements())
+                .listSize(missionPreViewDTOList.size())
+                .missionList(missionPreViewDTOList)
                 .build();
     }
 }
