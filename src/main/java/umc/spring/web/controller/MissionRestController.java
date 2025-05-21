@@ -17,6 +17,7 @@ import umc.spring.domain.mapping.UserMission;
 import umc.spring.service.MissionService.MissionCommandService;
 import umc.spring.service.MissionService.MissionQueryService;
 import umc.spring.validation.annotation.ExistMemberMissionMission;
+import umc.spring.validation.annotation.ValidPage;
 import umc.spring.web.dto.MemberMissionResponseDTO;
 import umc.spring.web.dto.MissionResponseDTO;
 
@@ -46,7 +47,7 @@ public class MissionRestController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH004", description = "access 토큰 만료", content = @Content(schema = @Schema(implementation = ApiResponse.class))),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH006", description = "access 토큰 모양이 이상함", content = @Content(schema = @Schema(implementation = ApiResponse.class)))
     })
-        public ApiResponse<MissionResponseDTO.MissionUserPreViewListDTO> getMyMissionList(@RequestParam(name = "page") @Min(0)Integer page) {
+        public ApiResponse<MissionResponseDTO.MissionUserPreViewListDTO> getMyMissionList( @ValidPage @RequestParam(name = "page") Integer page) {
 
         Page<UserMission> missionList = missionQueryService.findAllMissions(page);
         return ApiResponse.onSuccess(MemberMissionConverter.missionUserPreViewListDTO(missionList));
