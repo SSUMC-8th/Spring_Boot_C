@@ -43,4 +43,29 @@ public class MissionResponseDTO {
         String category;
         String content;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MissionUserPreViewListDTO {
+        List<MissionResponseDTO.MissionUserPreViewDTO> missionList;
+        Integer listSize;
+        Integer totalPage;
+        Long totalElements;
+        Boolean isFirst;
+        Boolean isLast;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MissionUserPreViewDTO {
+        String name;
+        Float point; //mission
+        String storeName;
+        String content;
+        String status;
+    }
 }
