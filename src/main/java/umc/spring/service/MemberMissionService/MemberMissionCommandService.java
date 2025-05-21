@@ -6,4 +6,5 @@ import umc.spring.domain.mapping.MemberMission;
 public interface MemberMissionCommandService {
     @Transactional
     MemberMission startMission(Long memberId, Long missionId);
+    void completeMission(Long memberId, Long missionId);
 }

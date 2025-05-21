@@ -15,7 +15,16 @@ public class ExistStoreValidator implements ConstraintValidator<ExistStore, Long
 
     @Override
     public boolean isValid(Long storeId, ConstraintValidatorContext context) {
-        if (storeId == null) return false; // null이면 false
-        return storeRepository.existsById(storeId);
+        if (storeId == null) return false;
+
+        boolean exists = storeRepository.existsById(storeId);
+
+        if (!exists) {
+            context.disableDefaultConstraintViolation();
+            context.buildConstraintViolationWithTemplate("STORE_NOT_FOUND")
+                    .addConstraintViolation();
+        }
+
+        return exists;
     }
 }

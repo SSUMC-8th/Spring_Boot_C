@@ -24,16 +24,16 @@ import umc.spring.web.dto.ReviewResponseDTO;
 public class ReviewRestController {
     private final ReviewCommandService reviewCommandService;
 
-    @PostMapping("/")
+    @PostMapping("/{storeId}")
     @Operation(
             summary = "가게 리뷰 작성 API",
             description = "특정 storeId에 대해 리뷰를 등록합니다. request body로 rating과 content를 받아 처리합니다."
     )
     @ApiResponses({
-            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "COMMON200", description = "리뷰 등록 성공"),
-            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "REVIEW404", description = "존재하지 않는 가게",
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "리뷰 등록 성공"),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "존재하지 않는 가게",
                     content = @Content(schema = @Schema(implementation = ApiResponse.class))),
-            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "VALID001", description = "유효하지 않은 입력",
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "001", description = "유효하지 않은 입력",
                     content = @Content(schema = @Schema(implementation = ApiResponse.class)))
     })
     @Parameters({

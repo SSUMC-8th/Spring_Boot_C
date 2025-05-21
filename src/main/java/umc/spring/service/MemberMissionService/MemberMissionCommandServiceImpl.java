@@ -3,9 +3,11 @@ package umc.spring.service.MemberMissionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc.spring.apiPayload.exception.MissionNotFoundException;
 import umc.spring.converter.MemberMissionConverter;
 import umc.spring.domain.Member;
 import umc.spring.domain.Mission;
+import umc.spring.domain.enums.MissionStatus;
 import umc.spring.domain.mapping.MemberMission;
 import umc.spring.repository.MemberRepository;
 import umc.spring.repository.MissoinRepository.MissionRepository;
@@ -28,4 +30,19 @@ public class MemberMissionCommandServiceImpl implements MemberMissionCommandServ
         MemberMission memberMission = MemberMissionConverter.toMemberMission(member, mission);
         return memberMissionRepository.save(memberMission);
     }
+
+    @Transactional
+    @Override
+    public void completeMission(Long memberId, Long missionId) {
+        MemberMission memberMission = memberMissionRepository
+                .findByMemberIdAndMissionId(memberId, missionId)
+                .orElseThrow(() -> new MissionNotFoundException("해당 미션 정보가 없습니다."));
+
+        if (memberMission.getStatus() != MissionStatus.IN_PROGRESS) {
+            throw new IllegalStateException("진행 중인 미션이 아닙니다.");
+        }
+
+        memberMission.updateStatus(MissionStatus.COMPLETED);
+    }
+
 }

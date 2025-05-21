@@ -31,4 +31,8 @@ public class MemberMission extends BaseEntity {
 
     @Column(nullable = false)
     private Long ownerId;
+
+    public void updateStatus(MissionStatus newStatus) {
+        this.status = newStatus;
+    }
 }

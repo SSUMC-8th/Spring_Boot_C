@@ -27,14 +27,23 @@ import java.util.Optional;
 public class ExceptionAdvice extends ResponseEntityExceptionHandler {
 
 
-    @ExceptionHandler
-    public ResponseEntity<Object> validation(ConstraintViolationException e, WebRequest request) {
-        String errorMessage = e.getConstraintViolations().stream()
-                .map(constraintViolation -> constraintViolation.getMessage())
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<Object> handleConstraintViolation(ConstraintViolationException ex, WebRequest request) {
+        String errorKey = ex.getConstraintViolations().stream()
+                .map(v -> v.getMessage())
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("ConstraintViolationException 추출 도중 에러 발생"));
+                .orElse("INVALID_REQUEST");
 
-        return handleExceptionInternalConstraint(e, ErrorStatus.valueOf(errorMessage), HttpHeaders.EMPTY,request);
+        ErrorStatus status;
+
+        switch (errorKey) {
+            case "STORE_NOT_FOUND" -> status = ErrorStatus.STORE_NOT_FOUND;
+            case "PAGE_OUT_OF_RANGE" -> status = ErrorStatus.PAGE_OUT_OF_RANGE;
+            default -> status = ErrorStatus._BAD_REQUEST;
+        }
+
+        ApiResponse<Object> body = ApiResponse.onFailure(status.getCode(), status.getMessage(), null);
+        return ResponseEntity.status(status.getHttpStatus()).body(body);
     }
 
     @Override
@@ -115,5 +124,20 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
                 errorCommonStatus.getHttpStatus(),
                 request
         );
+    }
+    @ExceptionHandler(MissionNotFoundException.class)
+    public ResponseEntity<ApiResponse<?>> handleMissionNotFoundException(MissionNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(ApiResponse.onFailure("MISSION_NOT_FOUND", ex.getMessage(), null));
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ApiResponse<?>> handleIllegalArgument(IllegalArgumentException ex) {
+        if (ex.getMessage().contains("가게")) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(ApiResponse.onFailure("STORE_NOT_FOUND", ex.getMessage(), null));
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ApiResponse.onFailure("BAD_REQUEST", ex.getMessage(), null));
     }
 }

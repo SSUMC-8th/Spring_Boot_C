@@ -27,7 +27,7 @@ public class MissionResponseDTO {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public class MissionPreviewDTO {
+    public static class MissionPreviewDTO {
         private Long missionId;
         private String content;
         private Integer point;
@@ -38,9 +38,26 @@ public class MissionResponseDTO {
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public class MissionPreviewListDTO {
+    public static class MissionPreviewListDTO {
         private List<MissionPreviewDTO> missions;
         private boolean hasNext;
+    }
+
+    @Getter
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class MemberMissionResponseDTO {
+        private Long missionId;
+        private String missionTitle;
+        private int daysLeft;
+
+        @Getter
+        @Builder
+        public static class PageDTO {
+            private List<MemberMissionResponseDTO> missions;
+            private boolean hasNext;
+        }
     }
 
 
