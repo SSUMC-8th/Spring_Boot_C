@@ -32,6 +32,17 @@ public class ReviewResponseDTO {
         private Double rating;
         private String content;
         private LocalDateTime createdAt;
-        private List<String> imageUrls;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ReviewListDTO {
+        private List<ReviewDetailDTO> reviewList;
+        private int totalPages;
+        private long totalElements;
+        private boolean isFirst;
+        private boolean isLast;
     }
 }

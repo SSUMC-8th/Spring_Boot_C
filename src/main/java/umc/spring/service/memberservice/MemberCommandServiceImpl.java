@@ -8,8 +8,7 @@ import umc.spring.converter.MemberConverter;
 import umc.spring.converter.MemberPreferConverter;
 import umc.spring.domain.Member;
 import umc.spring.domain.enums.FoodCategory;
-import umc.spring.domain.mapping.MemberPrefer;
-import umc.spring.exception.handler.FoodCategoryHandler;
+import umc.spring.exception.GeneralException;
 import umc.spring.repository.memberrepository.MemberRepository;
 import umc.spring.web.dto.MemberRequestDTO;
 
@@ -33,7 +32,7 @@ public class MemberCommandServiceImpl implements MemberCommandService {
                     try {
                         return FoodCategory.valueOf(categoryName);  // 문자열 -> Enum 변환
                     } catch (IllegalArgumentException e) {
-                        throw new FoodCategoryHandler(ErrorStatus.FOOD_CATEGORY_NOT_FOUND);
+                        throw new GeneralException(ErrorStatus.FOOD_CATEGORY_NOT_FOUND);
                     }
                 })
                 .collect(Collectors.toList());
