@@ -21,6 +21,7 @@ public class StoreQueryServiceImpl implements StoreQueryService {
         return storeRepository.findById(id);
     }
 
+    /*
     @Override
     public List<Store> findStoresByNameAndScore(String name, Float score) {
         List<Store> filteredStores = storeRepository.dynamicQueryWithBooleanBuilder(name, score);
@@ -29,4 +30,5 @@ public class StoreQueryServiceImpl implements StoreQueryService {
 
         return filteredStores;
     }
+     */
 }

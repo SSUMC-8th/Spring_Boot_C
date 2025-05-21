@@ -46,16 +46,6 @@ public class ReviewCommandServiceImpl implements ReviewCommandService {
         // 리뷰 저장
         review = reviewRepository.save(review);
 
-        // 이미지 URL이 있는 경우 저장
-        if (request.getImageUrls() != null && !request.getImageUrls().isEmpty()) {
-            List<ReviewImage> reviewImages = request.getImageUrls().stream()
-                    .map(imageUrl -> ReviewConverter.toReviewImage(imageUrl, review))
-                    .collect(Collectors.toList());
-
-            // 이미지 추가
-            review.getReviewImageList().addAll(reviewImages);
-        }
-
         // 해당 가게의 평균 평점 업데이트 로직이 필요하다면 여기에 추가
         updateStoreRating(store);
 

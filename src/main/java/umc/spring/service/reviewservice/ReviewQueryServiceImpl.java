@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.spring.apiPayload.code.status.ErrorStatus;
+import umc.spring.converter.ReviewConverter;
 import umc.spring.domain.Review;
 import umc.spring.exception.GeneralException;
 import umc.spring.repository.ReviewRepository;
@@ -12,7 +13,7 @@ import umc.spring.web.dto.ReviewResponse;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class ReviewQueryServiceImpl extends ReviewQueryService{
+public class ReviewQueryServiceImpl implements ReviewQueryService {
 
     private final ReviewRepository reviewRepository;
 
