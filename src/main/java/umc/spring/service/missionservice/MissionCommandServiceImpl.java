@@ -12,8 +12,8 @@ import umc.spring.exception.GeneralException;
 import umc.spring.repository.MissionRepository;
 import umc.spring.repository.membermissionrepository.MemberMissionRepository;
 import umc.spring.repository.memberrepository.MemberRepository;
-import umc.spring.web.dto.MissionRequest;
-import umc.spring.web.dto.MissionResponse;
+import umc.spring.web.dto.MissionRequestDTO;
+import umc.spring.web.dto.MissionResponseDTO;
 
 import java.time.LocalDateTime;
 
@@ -27,7 +27,7 @@ public class MissionCommandServiceImpl implements MissionCommandService {
     private final MemberMissionRepository memberMissionRepository;
 
     @Override
-    public MissionResponse.AcceptMissionResultDTO acceptMission(MissionRequest.AcceptMissionDTO request, Long memberId) {
+    public MissionResponseDTO.AcceptMissionResultDTO acceptMission(MissionRequestDTO.AcceptMissionDTO request, Long memberId) {
         // 회원 조회
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new GeneralException(ErrorStatus.MEMBER_NOT_FOUND));

@@ -11,8 +11,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import umc.spring.service.reviewservice.ReviewCommandService;
-import umc.spring.web.dto.ReviewRequest;
-import umc.spring.web.dto.ReviewResponse;
+import umc.spring.web.dto.ReviewRequestDTO;
+import umc.spring.web.dto.ReviewResponseDTO;
 
 @RestController
 @RequiredArgsConstructor
@@ -47,9 +47,9 @@ public class ReviewRestController {
             )
     })
     @PostMapping
-    public umc.spring.apiPayload.ApiResponse<ReviewResponse.CreateReviewResultDTO> createReview(
+    public umc.spring.apiPayload.ApiResponse<ReviewResponseDTO.CreateReviewResultDTO> createReview(
             @Parameter(description = "리뷰 생성 정보", required = true)
-            @Valid @RequestBody ReviewRequest.CreateReviewDTO request,
+            @Valid @RequestBody ReviewRequestDTO.CreateReviewDTO request,
             @Parameter(description = "회원 ID", required = true)
             @RequestParam Long memberId) {
         return umc.spring.apiPayload.ApiResponse.onSuccess(reviewCommandService.createReview(request, memberId));

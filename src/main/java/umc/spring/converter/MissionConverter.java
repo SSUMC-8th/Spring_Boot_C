@@ -4,7 +4,7 @@ import umc.spring.domain.Member;
 import umc.spring.domain.Mission;
 import umc.spring.domain.enums.MissionStatus;
 import umc.spring.domain.mapping.MemberMission;
-import umc.spring.web.dto.MissionResponse;
+import umc.spring.web.dto.MissionResponseDTO;
 
 public class MissionConverter {
 
@@ -20,9 +20,9 @@ public class MissionConverter {
     }
 
     // 응답 DTO로 변환
-    public static MissionResponse.AcceptMissionResultDTO toAcceptMissionResultDTO(MemberMission memberMission) {
+    public static MissionResponseDTO.AcceptMissionResultDTO toAcceptMissionResultDTO(MemberMission memberMission) {
         Mission mission = memberMission.getMission();
-        return MissionResponse.AcceptMissionResultDTO.builder()
+        return MissionResponseDTO.AcceptMissionResultDTO.builder()
                 .memberMissionId(memberMission.getId())
                 .missionId(mission.getId())
                 .storeName(mission.getStore().getName())

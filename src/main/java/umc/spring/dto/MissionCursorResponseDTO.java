@@ -10,7 +10,7 @@ import umc.spring.domain.enums.FoodCategory;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MissionCursorResponseDto {
+public class MissionCursorResponseDTO {
     private String memberAddress;
     private Long memberPoint;
     private Long completedMissions;

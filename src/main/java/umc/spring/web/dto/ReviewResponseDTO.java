@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class ReviewResponse {
+public class ReviewResponseDTO {
 
     @Builder
     @Getter

@@ -7,19 +7,16 @@ import umc.spring.apiPayload.code.status.ErrorStatus;
 import umc.spring.converter.ReviewConverter;
 import umc.spring.domain.Member;
 import umc.spring.domain.Review;
-import umc.spring.domain.ReviewImage;
 import umc.spring.domain.Store;
-import umc.spring.domain.mapping.MemberMission;
 import umc.spring.domain.enums.MissionStatus;
 import umc.spring.exception.GeneralException;
 import umc.spring.repository.ReviewRepository;
 import umc.spring.repository.memberrepository.MemberRepository;
 import umc.spring.repository.storerepository.StoreRepository;
-import umc.spring.web.dto.ReviewRequest;
-import umc.spring.web.dto.ReviewResponse;
+import umc.spring.web.dto.ReviewRequestDTO;
+import umc.spring.web.dto.ReviewResponseDTO;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -31,7 +28,7 @@ public class ReviewCommandServiceImpl implements ReviewCommandService {
     private final StoreRepository storeRepository;
 
     @Override
-    public ReviewResponse.CreateReviewResultDTO createReview(ReviewRequest.CreateReviewDTO request, Long memberId) {
+    public ReviewResponseDTO.CreateReviewResultDTO createReview(ReviewRequestDTO.CreateReviewDTO request, Long memberId) {
         // 회원 조회
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new GeneralException(ErrorStatus.MEMBER_NOT_FOUND));

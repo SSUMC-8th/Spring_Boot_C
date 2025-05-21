@@ -12,7 +12,7 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.List;
 
-public class StoreRequest {
+public class StoreRequestDTO {
 
     @Getter
     @Builder

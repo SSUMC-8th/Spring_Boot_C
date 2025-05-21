@@ -13,9 +13,8 @@ import umc.spring.exception.GeneralException;
 import umc.spring.repository.FoodRepository;
 import umc.spring.repository.LocationRepository;
 import umc.spring.repository.storerepository.StoreRepository;
-import umc.spring.service.storeservice.StoreCommandService;
-import umc.spring.web.dto.StoreRequest;
-import umc.spring.web.dto.StoreResponse;
+import umc.spring.web.dto.StoreRequestDTO;
+import umc.spring.web.dto.StoreResponseDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,7 +29,7 @@ public class StoreCommandServiceImpl implements StoreCommandService {
     private final LocationRepository locationRepository;
 
     @Override
-    public StoreResponse.CreateStoreResultDTO createStore(StoreRequest.CreateStoreDTO request) {
+    public StoreResponseDTO.CreateStoreResultDTO createStore(StoreRequestDTO.CreateStoreDTO request) {
         // 1. Food 엔티티 조회
         Food food = foodRepository.findById(request.getFoodId())
                 .orElseThrow(() -> new GeneralException(ErrorStatus.FOOD_CATEGORY_NOT_FOUND));

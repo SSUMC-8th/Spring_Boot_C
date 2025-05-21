@@ -11,8 +11,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import umc.spring.service.missionservice.MissionCommandService;
-import umc.spring.web.dto.MissionRequest;
-import umc.spring.web.dto.MissionResponse;
+import umc.spring.web.dto.MissionRequestDTO;
+import umc.spring.web.dto.MissionResponseDTO;
 
 @RestController
 @RequiredArgsConstructor
@@ -47,9 +47,9 @@ public class MissionRestController {
             )
     })
     @PostMapping("/accept")
-    public umc.spring.apiPayload.ApiResponse<MissionResponse.AcceptMissionResultDTO> acceptMission(
+    public umc.spring.apiPayload.ApiResponse<MissionResponseDTO.AcceptMissionResultDTO> acceptMission(
             @Parameter(description = "미션 도전 정보", required = true)
-            @Valid @RequestBody MissionRequest.AcceptMissionDTO request,
+            @Valid @RequestBody MissionRequestDTO.AcceptMissionDTO request,
             @Parameter(description = "회원 ID", required = true)
             @RequestParam Long memberId) {
         return umc.spring.apiPayload.ApiResponse.onSuccess(missionCommandService.acceptMission(request, memberId));

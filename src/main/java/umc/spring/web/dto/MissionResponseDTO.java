@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-public class MissionResponse {
+public class MissionResponseDTO {
 
     @Builder
     @Getter

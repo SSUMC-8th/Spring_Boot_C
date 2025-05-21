@@ -1,8 +1,8 @@
 package umc.spring.service.reviewservice;
 
-import umc.spring.web.dto.ReviewRequest;
-import umc.spring.web.dto.ReviewResponse;
+import umc.spring.web.dto.ReviewRequestDTO;
+import umc.spring.web.dto.ReviewResponseDTO;
 
 public interface ReviewCommandService {
-    ReviewResponse.CreateReviewResultDTO createReview(ReviewRequest.CreateReviewDTO request, Long memberId);
+    ReviewResponseDTO.CreateReviewResultDTO createReview(ReviewRequestDTO.CreateReviewDTO request, Long memberId);
 }

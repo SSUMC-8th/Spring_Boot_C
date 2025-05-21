@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-public class MissionRequest {
+public class MissionRequestDTO {
 
     @Getter
     @Builder

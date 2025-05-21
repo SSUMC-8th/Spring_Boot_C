@@ -12,7 +12,7 @@ import org.hibernate.validator.constraints.Length;
 
 import java.util.List;
 
-public class ReviewRequest {
+public class ReviewRequestDTO {
 
     @Getter
     @Builder

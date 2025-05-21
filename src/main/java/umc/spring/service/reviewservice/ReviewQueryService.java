@@ -1,8 +1,8 @@
 package umc.spring.service.reviewservice;
 
-import umc.spring.web.dto.ReviewResponse;
+import umc.spring.web.dto.ReviewResponseDTO;
 
 public interface ReviewQueryService {
 
-    ReviewResponse.ReviewDetailDTO getReviewDetail(Long reviewId);
+    ReviewResponseDTO.ReviewDetailDTO getReviewDetail(Long reviewId);
 }

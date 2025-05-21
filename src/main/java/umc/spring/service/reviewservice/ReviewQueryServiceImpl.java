@@ -8,7 +8,7 @@ import umc.spring.converter.ReviewConverter;
 import umc.spring.domain.Review;
 import umc.spring.exception.GeneralException;
 import umc.spring.repository.ReviewRepository;
-import umc.spring.web.dto.ReviewResponse;
+import umc.spring.web.dto.ReviewResponseDTO;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +19,7 @@ public class ReviewQueryServiceImpl implements ReviewQueryService {
 
     @Override
     @Transactional(readOnly = true)
-    public ReviewResponse.ReviewDetailDTO getReviewDetail(Long reviewId) {
+    public ReviewResponseDTO.ReviewDetailDTO getReviewDetail(Long reviewId) {
         Review review = reviewRepository.findById(reviewId)
                 .orElseThrow(() -> new GeneralException(ErrorStatus.ARTICLE_NOT_FOUND));
 

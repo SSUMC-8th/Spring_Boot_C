@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MissionProgressDto {
+public class MissionProgressDTO {
 
     private Long memberMissionId;
 
