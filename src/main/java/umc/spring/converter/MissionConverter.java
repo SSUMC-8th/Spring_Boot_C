@@ -1,11 +1,8 @@
 package umc.spring.converter;
 
 import org.springframework.data.domain.Page;
-import umc.spring.domain.Member;
 import umc.spring.domain.Mission;
 import umc.spring.domain.Store;
-import umc.spring.domain.enums.MissionStatus;
-import umc.spring.domain.mapping.MemberMission;
 import umc.spring.web.dto.MissionRequestDTO;
 import umc.spring.web.dto.MissionResponseDTO;
 
@@ -13,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class MissionConverter {
 
-    public static Mission toMission(MissionRequestDTO.CreateMissionDTO request, Store store) {
+    public static Mission toMissionDTO(MissionRequestDTO.CreateMissionDTO request, Store store) {
         Mission mission = Mission.builder()
                 .content(request.getContent())
                 .point(request.getPoint())

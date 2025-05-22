@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class ReviewConverter {
 
-    public static Review toReview(ReviewRequestDTO.CreateReviewDTO request, Member member, Store store) {
+    public static Review toReviewDTO(ReviewRequestDTO.CreateReviewDTO request, Member member, Store store) {
         return Review.builder()
                 .member(member)
                 .store(store)

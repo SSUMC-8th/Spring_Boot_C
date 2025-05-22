@@ -40,14 +40,14 @@ public class StoreCommandServiceImpl implements StoreCommandService {
                 .orElseThrow(() -> new LocationHandler(ErrorStatus.LOCATION_NOT_FOUND));
 
         // 3. Store 엔티티 생성
-        Store store = StoreConverter.toStore(request, food, location);
+        Store store = StoreConverter.toStoreDTO(request, food, location);
 
         // 4. Store 저장
         Store savedStore = storeRepository.save(store);
 
         // 5. 영업시간 추가
         List<StoreOpeningHours> openingHoursList = request.getOpeningHours().stream()
-                .map(openingHoursDTO -> StoreConverter.toStoreOpeningHours(openingHoursDTO, savedStore))
+                .map(openingHoursDTO -> StoreConverter.toStoreOpeningHoursDTO(openingHoursDTO, savedStore))
                 .collect(Collectors.toList());
 
         // 6. 영업시간 설정

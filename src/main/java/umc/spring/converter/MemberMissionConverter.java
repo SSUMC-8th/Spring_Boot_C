@@ -59,7 +59,7 @@ public class MemberMissionConverter {
     }
 
     // 도전 중인 미션으로 등록
-    public static MemberMission toMemberMission(Mission mission, Member member) {
+    public static MemberMission toMemberMissionDTO(Mission mission, Member member) {
         return MemberMission.builder()
                 .mission(mission)
                 .member(member)

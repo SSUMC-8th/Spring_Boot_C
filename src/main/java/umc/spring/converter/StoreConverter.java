@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class StoreConverter {
 
-    public static Store toStore(StoreRequestDTO.CreateStoreDTO request, Food food, Location location) {
+    public static Store toStoreDTO(StoreRequestDTO.CreateStoreDTO request, Food food, Location location) {
         return Store.builder()
                 .name(request.getName())
                 .address(request.getAddress())
@@ -20,7 +20,7 @@ public class StoreConverter {
                 .build();
     }
 
-    public static StoreOpeningHours toStoreOpeningHours(StoreRequestDTO.OpeningHoursDTO openingHours, Store store) {
+    public static StoreOpeningHours toStoreOpeningHoursDTO(StoreRequestDTO.OpeningHoursDTO openingHours, Store store) {
         return StoreOpeningHours.builder()
                 .store(store)
                 .dayOfWeek(openingHours.getDayOfWeek())

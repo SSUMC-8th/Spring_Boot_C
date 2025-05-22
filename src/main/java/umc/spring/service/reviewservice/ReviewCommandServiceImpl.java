@@ -39,7 +39,7 @@ public class ReviewCommandServiceImpl implements ReviewCommandService {
                 .orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
 
         // 리뷰 엔티티 생성
-        Review review = ReviewConverter.toReview(request, member, store);
+        Review review = ReviewConverter.toReviewDTO(request, member, store);
 
         // 리뷰 저장
         review = reviewRepository.save(review);

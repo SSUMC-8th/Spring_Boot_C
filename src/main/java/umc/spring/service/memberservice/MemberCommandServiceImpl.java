@@ -5,15 +5,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.spring.apiPayload.code.status.ErrorStatus;
 import umc.spring.apiPayload.exception.handler.FoodHandler;
+import umc.spring.apiPayload.exception.handler.MemberHandler;
 import umc.spring.converter.MemberConverter;
-import umc.spring.converter.MemberPreferConverter;
 import umc.spring.domain.Member;
 import umc.spring.domain.enums.FoodCategory;
 import umc.spring.repository.MemberRepository;
 import umc.spring.web.dto.MemberRequestDTO;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,21 +24,10 @@ public class MemberCommandServiceImpl implements MemberCommandService {
     @Override
     public Member joinMember(MemberRequestDTO.JoinDTO request) {
 
-        Member newMember = MemberConverter.toMember(request);
+        // Converter에서 모든 변환 처리
+        Member newMember = MemberConverter.toMemberDTO(request);
 
-        List<FoodCategory> foodCategoryList = request.getPreferCategory().stream()
-                .map(categoryName -> {
-                    try {
-                        return FoodCategory.valueOf(categoryName);  // 문자열 -> Enum 변환
-                    } catch (IllegalArgumentException e) {
-                        throw new FoodHandler(ErrorStatus.FOOD_CATEGORY_NOT_FOUND);
-                    }
-                })
-                .collect(Collectors.toList());
-
-        // Member에 선호 카테고리 추가
-        MemberPreferConverter.addMemberPreferences(foodCategoryList, newMember);
-
+        // 저장 및 반환
         return memberRepository.save(newMember);
     }
 }

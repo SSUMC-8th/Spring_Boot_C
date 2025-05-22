@@ -39,7 +39,7 @@ public class MissionCommandServiceImpl implements MissionCommandService {
                 .orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
 
         // 미션 생성
-        Mission mission = MissionConverter.toMission(request, store);
+        Mission mission = MissionConverter.toMissionDTO(request, store);
 
         // 미션 저장
         mission = missionRepository.save(mission);
@@ -63,7 +63,7 @@ public class MissionCommandServiceImpl implements MissionCommandService {
         }
 
         // 새로운 MemberMission 객체 생성 및 저장
-        MemberMission memberMission = MemberMissionConverter.toMemberMission(mission, member);
+        MemberMission memberMission = MemberMissionConverter.toMemberMissionDTO(mission, member);
         memberMission = memberMissionRepository.save(memberMission);
 
         // 회원의 미션 목록에 추가
