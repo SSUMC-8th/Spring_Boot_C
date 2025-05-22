@@ -45,6 +45,20 @@ public class Store extends BaseEntity {
     @Builder.Default
     private List<StoreOpeningHours> openingHourList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<Mission> missionList = new ArrayList<>();
+
+    public void addMission(Mission mission) {
+        this.missionList.add(mission);
+        mission.setStore(this);
+    }
+
+    public void removeMission(Mission mission) {
+        this.missionList.remove(mission);
+        mission.setStore(null);
+    }
+
     public void updateRating(Double rating) {
         this.rating = rating;
     }

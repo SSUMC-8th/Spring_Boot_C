@@ -14,6 +14,19 @@ public class MissionResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
+    public static class CreateMissionResultDTO {
+        private Long missionId;
+        private String storeName;
+        private String content;
+        private Long point;
+        private LocalDateTime duration;
+        private LocalDateTime createdAt;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class AcceptMissionResultDTO {
         private Long memberMissionId;
         private Long missionId;
@@ -47,15 +60,6 @@ public class MissionResponseDTO {
         private LocalDateTime duration;
         private String storeName;
         private Long storeId;
-        private LocalDateTime createdAt;
-    }
-
-    @Builder
-    @Getter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class CreateMissionResultDTO {
-        private Long missionId;
         private LocalDateTime createdAt;
     }
 }

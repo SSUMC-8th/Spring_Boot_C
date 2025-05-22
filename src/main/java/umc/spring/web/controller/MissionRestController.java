@@ -32,6 +32,38 @@ public class MissionRestController {
     private final MissionQueryService missionQueryService;
     private final static int PAGE_SIZE = 10;
 
+    @PostMapping
+    @Operation(summary = "미션 생성", description = "특정 가게에 새로운 미션을 추가합니다.")
+    @ApiResponses({
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "200",
+                    description = "미션 생성 성공",
+                    content = @Content(
+                            schema = @Schema(implementation = MissionResponseDTO.CreateMissionResultDTO.class)
+                    )
+            ),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "400",
+                    description = "잘못된 요청",
+                    content = @Content(
+                            schema = @Schema(implementation = ApiResponse.class)
+                    )
+            ),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "404",
+                    description = "가게를 찾을 수 없음",
+                    content = @Content(
+                            schema = @Schema(implementation = ApiResponse.class)
+                    )
+            )
+    })
+    public ApiResponse<MissionResponseDTO.CreateMissionResultDTO> createMission(
+            @Parameter(description = "미션 생성 정보", required = true)
+            @Valid @RequestBody MissionRequestDTO.CreateMissionDTO request) {
+
+        return ApiResponse.onSuccess(missionCommandService.createMission(request));
+    }
+
     @Operation(summary = "미션 도전하기", description = "특정 미션에 도전합니다.")
     @ApiResponses({
             @io.swagger.v3.oas.annotations.responses.ApiResponse(
