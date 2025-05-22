@@ -4,12 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.spring.apiPayload.code.status.ErrorStatus;
+import umc.spring.apiPayload.exception.handler.FoodHandler;
+import umc.spring.apiPayload.exception.handler.LocationHandler;
 import umc.spring.converter.StoreConverter;
 import umc.spring.domain.Food;
 import umc.spring.domain.Location;
 import umc.spring.domain.Store;
 import umc.spring.domain.StoreOpeningHours;
-import umc.spring.apiPayload.exception.GeneralException;
 import umc.spring.repository.FoodRepository;
 import umc.spring.repository.LocationRepository;
 import umc.spring.repository.StoreRepository;
@@ -32,11 +33,11 @@ public class StoreCommandServiceImpl implements StoreCommandService {
     public StoreResponseDTO.CreateStoreResultDTO createStore(StoreRequestDTO.CreateStoreDTO request) {
         // 1. Food 엔티티 조회
         Food food = foodRepository.findById(request.getFoodId())
-                .orElseThrow(() -> new GeneralException(ErrorStatus.FOOD_CATEGORY_NOT_FOUND));
+                .orElseThrow(() -> new FoodHandler(ErrorStatus.FOOD_CATEGORY_NOT_FOUND));
 
         // 2. Location 엔티티 조회
         Location location = locationRepository.findById(request.getLocationId())
-                .orElseThrow(() -> new GeneralException(ErrorStatus.LOCATION_NOT_FOUND));
+                .orElseThrow(() -> new LocationHandler(ErrorStatus.LOCATION_NOT_FOUND));
 
         // 3. Store 엔티티 생성
         Store store = StoreConverter.toStore(request, food, location);

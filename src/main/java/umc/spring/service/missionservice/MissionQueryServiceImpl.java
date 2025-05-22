@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.spring.apiPayload.code.status.ErrorStatus;
-import umc.spring.apiPayload.exception.GeneralException;
+import umc.spring.apiPayload.exception.handler.StoreHandler;
 import umc.spring.domain.Mission;
 import umc.spring.domain.Store;
 import umc.spring.repository.MissionRepository;
@@ -23,7 +23,7 @@ public class MissionQueryServiceImpl implements MissionQueryService {
     @Override
     public Page<Mission> getMissionsByStore(Long storeId, Pageable pageable) {
         Store store = storeRepository.findById(storeId)
-                .orElseThrow(() -> new GeneralException(ErrorStatus.STORE_NOT_FOUND));
+                .orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
 
         return missionRepository.findAllByStoreOrderByCreatedAtDesc(store, pageable);
     }

@@ -12,8 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 import umc.spring.apiPayload.ApiResponse;
-import umc.spring.apiPayload.code.status.ErrorStatus;
-import umc.spring.apiPayload.exception.GeneralException;
 import umc.spring.converter.MissionConverter;
 import umc.spring.domain.Mission;
 import umc.spring.service.missionservice.MissionCommandService;

@@ -6,13 +6,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.spring.apiPayload.code.status.ErrorStatus;
+import umc.spring.apiPayload.exception.handler.MemberHandler;
+import umc.spring.apiPayload.exception.handler.ReviewHandler;
+import umc.spring.apiPayload.exception.handler.StoreHandler;
 import umc.spring.converter.ReviewConverter;
 import umc.spring.domain.Member;
 import umc.spring.domain.Review;
 import umc.spring.domain.Store;
-import umc.spring.apiPayload.exception.GeneralException;
-import umc.spring.repository.ReviewRepository;
 import umc.spring.repository.MemberRepository;
+import umc.spring.repository.ReviewRepository;
 import umc.spring.repository.StoreRepository;
 import umc.spring.web.dto.ReviewResponseDTO;
 
@@ -28,7 +30,7 @@ public class ReviewQueryServiceImpl implements ReviewQueryService {
     @Override
     public ReviewResponseDTO.ReviewDetailDTO getReviewDetail(Long reviewId) {
         Review review = reviewRepository.findById(reviewId)
-                .orElseThrow(() -> new GeneralException(ErrorStatus.ARTICLE_NOT_FOUND));
+                .orElseThrow(() -> new ReviewHandler(ErrorStatus.REVIEW_NOT_FOUND));
 
         return ReviewConverter.toReviewDetailDTO(review);
     }
@@ -36,10 +38,10 @@ public class ReviewQueryServiceImpl implements ReviewQueryService {
     @Override
     public Page<Review> getMyReviewsForStore(Long storeId, Long memberId, Pageable pageable) {
         Store store = storeRepository.findById(storeId)
-                .orElseThrow(() -> new GeneralException(ErrorStatus.STORE_NOT_FOUND));
+                .orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
 
         Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new GeneralException(ErrorStatus.MEMBER_NOT_FOUND));
+                .orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
 
         return reviewRepository.findByStoreAndMember(store, member, pageable);
     }
