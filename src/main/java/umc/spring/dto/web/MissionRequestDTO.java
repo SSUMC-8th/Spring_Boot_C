@@ -45,4 +45,15 @@ public class MissionRequestDTO {
         @Future(message = "미션 기간은 현재 시간보다 미래여야 합니다.")
         private LocalDateTime duration;
     }
+
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class CompleteMissionDTO {
+        @NotNull(message = "회원 미션 ID는 필수입니다.")
+        private Long memberMissionId;
+
+        @NotNull(message = "회원 ID는 필수입니다.")
+        private Long memberId;
+    }
 }

@@ -14,9 +14,8 @@ import umc.spring.converter.MemberConverter;
 import umc.spring.converter.MemberMissionConverter;
 import umc.spring.domain.Member;
 import umc.spring.domain.mapping.MemberMission;
-import umc.spring.dto.web.MemberMissionResponseDTO;
-import umc.spring.dto.web.MemberRequestDTO;
-import umc.spring.dto.web.MemberResponseDTO;
+import umc.spring.dto.web.*;
+import umc.spring.service.membermissionservice.MemberMissionCommandService;
 import umc.spring.service.membermissionservice.MemberMissionQueryService;
 import umc.spring.service.memberservice.MemberCommandService;
 import umc.spring.validation.annotation.OneIndexedPage;
@@ -28,6 +27,7 @@ public class MemberRestController {
 
     private final MemberCommandService memberCommandService;
     private final MemberMissionQueryService memberMissionQueryService;
+    private final MemberMissionCommandService memberMissionCommandService;
     private final static int PAGE_SIZE = 10;
 
     @PostMapping("/")
@@ -55,6 +55,24 @@ public class MemberRestController {
         Page<MemberMission> memberMissionPage = memberMissionQueryService.getInProgressMissions(memberId, pageRequest);
 
         return BaseResponse.onSuccess(MemberMissionConverter.toMemberMissionListDTO(memberMissionPage));
+    }
+
+    @PutMapping("/{memberId}/missions/{memberMissionId}/complete")
+    @Operation(summary = "미션 완료 처리", description = "진행중인 미션을 완료 상태로 변경합니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "미션 완료 처리 성공"),
+            @ApiResponse(responseCode = "404", description = "미션을 찾을 수 없음"),
+            @ApiResponse(responseCode = "400", description = "진행중인 미션이 아니거나 기간이 만료됨")
+    })
+    public BaseResponse<MissionResponseDTO.CompleteMissionResultDTO> completeMission(
+            @Parameter(description = "회원 ID", required = true)
+            @PathVariable Long memberId,
+            @Parameter(description = "회원 미션 ID", required = true)
+            @PathVariable Long memberMissionId) {
+
+        MissionRequestDTO.CompleteMissionDTO request = new MissionRequestDTO.CompleteMissionDTO(memberMissionId, memberId);
+
+        return BaseResponse.onSuccess(memberMissionCommandService.completeMission(request));
     }
 
 }

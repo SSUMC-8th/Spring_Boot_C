@@ -82,4 +82,17 @@ public class MemberMissionConverter {
                 .deadline(mission.getDuration())
                 .build();
     }
+
+    public static MissionResponseDTO.CompleteMissionResultDTO toCompleteMissionResultDTO(MemberMission memberMission) {
+        return MissionResponseDTO.CompleteMissionResultDTO.builder()
+                .memberMissionId(memberMission.getId())
+                .missionId(memberMission.getMission().getId())
+                .storeName(memberMission.getMission().getStore().getName())
+                .missionContent(memberMission.getMission().getContent())
+                .earnedPoint(memberMission.getMission().getPoint())
+                .status(memberMission.getStatus())
+                .completedAt(memberMission.getUpdatedAt()) // 완료 시간
+                .isReviewed(memberMission.getIsReviewed())
+                .build();
+    }
 }
