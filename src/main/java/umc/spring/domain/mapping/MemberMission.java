@@ -33,7 +33,6 @@ public class MemberMission extends BaseEntity {
 
     private Integer authenticationNum;
 
-    // MemberMission.java에 추가
     public void updateReviewStatus(Boolean isReviewed) {
         this.isReviewed = isReviewed;
     }
