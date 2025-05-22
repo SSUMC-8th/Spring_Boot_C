@@ -1,9 +1,9 @@
 package umc.spring.service.storeservice;
 
-import umc.spring.web.dto.StoreRequest;
-import umc.spring.web.dto.StoreResponse;
+import umc.spring.dto.web.StoreRequestDTO;
+import umc.spring.dto.web.StoreResponseDTO;
 
 public interface StoreCommandService {
 
-    StoreResponse.CreateStoreResultDTO createStore(StoreRequest.CreateStoreDTO request);
+    StoreResponseDTO.CreateStoreResultDTO createStore(StoreRequestDTO.CreateStoreDTO request);
 }

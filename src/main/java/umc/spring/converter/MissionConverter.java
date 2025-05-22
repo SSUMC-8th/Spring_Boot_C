@@ -1,35 +1,59 @@
 package umc.spring.converter;
 
-import umc.spring.domain.Member;
+import org.springframework.data.domain.Page;
 import umc.spring.domain.Mission;
-import umc.spring.domain.enums.MissionStatus;
-import umc.spring.domain.mapping.MemberMission;
-import umc.spring.web.dto.MissionResponse;
+import umc.spring.domain.Store;
+import umc.spring.dto.web.MissionRequestDTO;
+import umc.spring.dto.web.MissionResponseDTO;
+
+import java.util.stream.Collectors;
 
 public class MissionConverter {
 
-    // 도전 중인 미션으로 등록
-    public static MemberMission toMemberMission(Mission mission, Member member) {
-        return MemberMission.builder()
-                .mission(mission)
-                .member(member)
-                .status(MissionStatus.IN_PROGRESS)
-                .isReviewed(false)
-                .authenticationNum(0) // 인증 횟수 초기화
+    public static Mission toMissionDTO(MissionRequestDTO.CreateMissionDTO request, Store store) {
+        Mission mission = Mission.builder()
+                .content(request.getContent())
+                .point(request.getPoint())
+                .duration(request.getDuration())
+                .build();
+
+        mission.setStore(store);
+
+        return mission;
+    }
+
+    public static MissionResponseDTO.CreateMissionResultDTO toCreateMissionResultDTO(Mission mission) {
+        return MissionResponseDTO.CreateMissionResultDTO.builder()
+                .missionId(mission.getId())
+                .storeName(mission.getStore().getName())
+                .content(mission.getContent())
+                .point(mission.getPoint())
+                .duration(mission.getDuration())
+                .createdAt(mission.getCreatedAt())
                 .build();
     }
 
-    // 응답 DTO로 변환
-    public static MissionResponse.AcceptMissionResultDTO toAcceptMissionResultDTO(MemberMission memberMission) {
-        Mission mission = memberMission.getMission();
-        return MissionResponse.AcceptMissionResultDTO.builder()
-                .memberMissionId(memberMission.getId())
-                .missionId(mission.getId())
-                .storeName(mission.getStore().getName())
-                .missionContent(mission.getContent())
+    public static MissionResponseDTO.MissionDTO toMissionDTO(Mission mission) {
+        return MissionResponseDTO.MissionDTO.builder()
+                .id(mission.getId())
+                .content(mission.getContent())
                 .point(mission.getPoint())
-                .acceptedAt(memberMission.getCreatedAt())
-                .deadline(mission.getDuration())
+                .duration(mission.getDuration())
+                .storeName(mission.getStore().getName())
+                .storeId(mission.getStore().getId())
+                .createdAt(mission.getCreatedAt())
+                .build();
+    }
+
+    public static MissionResponseDTO.MissionListDTO toMissionListDTO(Page<Mission> missionPage) {
+        return MissionResponseDTO.MissionListDTO.builder()
+                .missionList(missionPage.getContent().stream()
+                        .map(MissionConverter::toMissionDTO)
+                        .collect(Collectors.toList()))
+                .totalPages(missionPage.getTotalPages())
+                .totalElements(missionPage.getTotalElements())
+                .isFirst(missionPage.isFirst())
+                .isLast(missionPage.isLast())
                 .build();
     }
 }

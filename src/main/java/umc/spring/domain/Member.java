@@ -9,6 +9,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import umc.spring.domain.common.BaseEntity;
+import umc.spring.domain.enums.FoodCategory;
 import umc.spring.domain.enums.Gender;
 import umc.spring.domain.enums.MemberStatus;
 import umc.spring.domain.mapping.MemberAgree;
@@ -19,6 +20,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -89,6 +91,19 @@ public class Member extends BaseEntity {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<Notification> notificationList = new ArrayList<>();
+
+    public void addFoodPreferences(List<FoodCategory> foodCategories) {
+        // 기존 선호도 제거
+        this.memberPreferList.clear();
+
+        // 새로운 선호도 추가
+        if (foodCategories != null && !foodCategories.isEmpty()) {
+            foodCategories.forEach(category -> {
+                MemberPrefer memberPrefer = MemberPrefer.createMemberPrefer(this, category);
+                this.memberPreferList.add(memberPrefer);
+            });
+        }
+    }
 
     public void addPoint(Long additionalPoints) {
         if (this.point == null) {

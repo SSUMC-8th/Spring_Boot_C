@@ -21,10 +21,6 @@ public class Mission extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_id")
-    private Store store;
-
     @Column(columnDefinition = "DATETIME(6)")
     private LocalDateTime duration;
 
@@ -34,7 +30,24 @@ public class Mission extends BaseEntity {
 
     private Long point;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "store_id")
+    private Store store;
+
     @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
     @Builder.Default
     private List<MemberMission> memberMissionList = new ArrayList<>();
+
+    public void setStore(Store store) {
+        // 기존 연관관계 제거
+        if (this.store != null) {
+            this.store.getMissionList().remove(this);
+        }
+
+        // 새로운 연관관계 설정
+        this.store = store;
+        if (store != null && !store.getMissionList().contains(this)) {
+            store.getMissionList().add(this);
+        }
+    }
 }

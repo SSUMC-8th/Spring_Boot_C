@@ -1,8 +1,11 @@
 package umc.spring.service.missionservice;
 
-import umc.spring.web.dto.MissionRequest;
-import umc.spring.web.dto.MissionResponse;
+import umc.spring.dto.web.MissionRequestDTO;
+import umc.spring.dto.web.MissionResponseDTO;
 
 public interface MissionCommandService {
-    MissionResponse.AcceptMissionResultDTO acceptMission(MissionRequest.AcceptMissionDTO request, Long memberId);
+
+    MissionResponseDTO.CreateMissionResultDTO createMission(MissionRequestDTO.CreateMissionDTO request);
+
+    MissionResponseDTO.AcceptMissionResultDTO acceptMission(MissionRequestDTO.AcceptMissionDTO request, Long memberId);
 }

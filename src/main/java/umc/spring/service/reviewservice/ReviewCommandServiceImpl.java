@@ -4,22 +4,20 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.spring.apiPayload.code.status.ErrorStatus;
+import umc.spring.apiPayload.exception.handler.MemberHandler;
+import umc.spring.apiPayload.exception.handler.StoreHandler;
 import umc.spring.converter.ReviewConverter;
 import umc.spring.domain.Member;
 import umc.spring.domain.Review;
-import umc.spring.domain.ReviewImage;
 import umc.spring.domain.Store;
-import umc.spring.domain.mapping.MemberMission;
 import umc.spring.domain.enums.MissionStatus;
-import umc.spring.exception.GeneralException;
+import umc.spring.repository.MemberRepository;
 import umc.spring.repository.ReviewRepository;
-import umc.spring.repository.memberrepository.MemberRepository;
-import umc.spring.repository.storerepository.StoreRepository;
-import umc.spring.web.dto.ReviewRequest;
-import umc.spring.web.dto.ReviewResponse;
+import umc.spring.repository.StoreRepository;
+import umc.spring.dto.web.ReviewRequestDTO;
+import umc.spring.dto.web.ReviewResponseDTO;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -31,30 +29,20 @@ public class ReviewCommandServiceImpl implements ReviewCommandService {
     private final StoreRepository storeRepository;
 
     @Override
-    public ReviewResponse.CreateReviewResultDTO createReview(ReviewRequest.CreateReviewDTO request, Long memberId) {
+    public ReviewResponseDTO.CreateReviewResultDTO createReview(ReviewRequestDTO.CreateReviewDTO request, Long memberId) {
         // 회원 조회
         Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new GeneralException(ErrorStatus.MEMBER_NOT_FOUND));
+                .orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
 
         // 가게 조회
         Store store = storeRepository.findById(request.getStoreId())
-                .orElseThrow(() -> new GeneralException(ErrorStatus.ARTICLE_NOT_FOUND));
+                .orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
 
         // 리뷰 엔티티 생성
-        Review review = ReviewConverter.toReview(request, member, store);
+        Review review = ReviewConverter.toReviewDTO(request, member, store);
 
         // 리뷰 저장
         review = reviewRepository.save(review);
-
-        // 이미지 URL이 있는 경우 저장
-        if (request.getImageUrls() != null && !request.getImageUrls().isEmpty()) {
-            List<ReviewImage> reviewImages = request.getImageUrls().stream()
-                    .map(imageUrl -> ReviewConverter.toReviewImage(imageUrl, review))
-                    .collect(Collectors.toList());
-
-            // 이미지 추가
-            review.getReviewImageList().addAll(reviewImages);
-        }
 
         // 해당 가게의 평균 평점 업데이트 로직이 필요하다면 여기에 추가
         updateStoreRating(store);
