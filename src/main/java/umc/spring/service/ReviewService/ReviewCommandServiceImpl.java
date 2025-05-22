@@ -22,7 +22,7 @@ public class ReviewCommandServiceImpl implements ReviewCommandService{
 
     @Override
     @Transactional
-    public Review joinReview(ReviewRequestDTO.ReviewDTO request) {
+    public Review joinReview(Long storeId, ReviewRequestDTO.ReviewDTO request) {
         Member member = memberRepository.findById(request.getMemberId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원"));
         Store store = storeRepository.findById(request.getStoreId())

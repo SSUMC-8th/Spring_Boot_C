@@ -10,8 +10,8 @@ import umc.spring.apiPayload.ApiResponse;
 import umc.spring.converter.MissionConverter;
 import umc.spring.domain.Mission;
 import umc.spring.service.MissionService.MissionCommandService;
-import umc.spring.web.dto.MissionCreateRequestDTO;
-import umc.spring.web.dto.MissionCreateResponseDTO;
+import umc.spring.web.dto.MissionRequestDTO;
+import umc.spring.web.dto.MissionResponseDTO;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,7 +20,7 @@ public class MissionRestController {
     private final MissionCommandService missionCommandService;
 
     @PostMapping("/")
-    public ApiResponse<MissionCreateResponseDTO.MissionCreateResultDTO> createMission(@Valid @RequestBody MissionCreateRequestDTO.MissionCreateDTO request) {
+    public ApiResponse<MissionResponseDTO.MissionCreateResultDTO> createMission(@Valid @RequestBody MissionRequestDTO.MissionCreateDTO request) {
         Mission savedMission = missionCommandService.createMission(request);
         return ApiResponse.onSuccess(MissionConverter.toMissionCreateResponseDTO(savedMission));
     }

@@ -8,8 +8,7 @@ import umc.spring.domain.Mission;
 import umc.spring.domain.Store;
 import umc.spring.repository.MissoinRepository.MissionRepository;
 import umc.spring.repository.StoreRepository.StoreRepository;
-import umc.spring.service.MissionService.MissionCommandService;
-import umc.spring.web.dto.MissionCreateRequestDTO;
+import umc.spring.web.dto.MissionRequestDTO;
 
 @Service
 @RequiredArgsConstructor
@@ -18,9 +17,10 @@ public class MissionCommandServiceImpl implements MissionCommandService {
     private final MissionRepository missionRepository;
     private final StoreRepository storeRepository;
 
+
     @Override
     @Transactional
-    public Mission createMission(MissionCreateRequestDTO.MissionCreateDTO dto) {
+    public Mission createMission(MissionRequestDTO.MissionCreateDTO dto) {
         Store store = storeRepository.findById(dto.getStoreId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 가게입니다."));
 
@@ -29,7 +29,7 @@ public class MissionCommandServiceImpl implements MissionCommandService {
     }
 
     @Override
-    public Mission joinMission(MissionCreateRequestDTO.MissionCreateDTO missionRequestDTO) {
+    public Mission joinMission(MissionRequestDTO.MissionCreateDTO missionRequestDTO) {
         return null;
     }
 }

@@ -6,32 +6,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
-public class ReviewResponseDTO {
-
-    @Builder
-    @Getter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class ReviewResultDTO {
-        Long reviewId;
-        Long storeId;
-        Long memberId;
-        String nickname;
-        String description;
-        float rating;
-        List<String> photos;
-        LocalDateTime createdAt;
-    }
-
+public class StoreResponseDTO {
     @Builder
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
     public static class ReviewPreViewListDTO {
-        List<ReviewPreViewListDTO> reviewList;
+        List<ReviewPreViewDTO> reviewList;
         Integer listSize;
         Integer totalPage;
         Long totalElements;
