@@ -10,10 +10,10 @@ import umc.spring.converter.ReviewConverter;
 import umc.spring.domain.Member;
 import umc.spring.domain.Review;
 import umc.spring.domain.Store;
-import umc.spring.exception.GeneralException;
+import umc.spring.apiPayload.exception.GeneralException;
 import umc.spring.repository.ReviewRepository;
-import umc.spring.repository.memberrepository.MemberRepository;
-import umc.spring.repository.storerepository.StoreRepository;
+import umc.spring.repository.MemberRepository;
+import umc.spring.repository.StoreRepository;
 import umc.spring.web.dto.ReviewResponseDTO;
 
 @Service

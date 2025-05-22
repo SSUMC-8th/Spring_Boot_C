@@ -8,9 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import umc.spring.domain.Review;
 import umc.spring.domain.Store;
 import umc.spring.repository.ReviewRepository;
-import umc.spring.repository.storerepository.StoreRepository;
+import umc.spring.repository.StoreRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service

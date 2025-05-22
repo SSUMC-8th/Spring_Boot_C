@@ -8,8 +8,8 @@ import umc.spring.converter.MemberConverter;
 import umc.spring.converter.MemberPreferConverter;
 import umc.spring.domain.Member;
 import umc.spring.domain.enums.FoodCategory;
-import umc.spring.exception.GeneralException;
-import umc.spring.repository.memberrepository.MemberRepository;
+import umc.spring.apiPayload.exception.GeneralException;
+import umc.spring.repository.MemberRepository;
 import umc.spring.web.dto.MemberRequestDTO;
 
 import java.util.List;

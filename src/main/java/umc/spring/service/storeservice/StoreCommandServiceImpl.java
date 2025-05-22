@@ -9,10 +9,10 @@ import umc.spring.domain.Food;
 import umc.spring.domain.Location;
 import umc.spring.domain.Store;
 import umc.spring.domain.StoreOpeningHours;
-import umc.spring.exception.GeneralException;
+import umc.spring.apiPayload.exception.GeneralException;
 import umc.spring.repository.FoodRepository;
 import umc.spring.repository.LocationRepository;
-import umc.spring.repository.storerepository.StoreRepository;
+import umc.spring.repository.StoreRepository;
 import umc.spring.web.dto.StoreRequestDTO;
 import umc.spring.web.dto.StoreResponseDTO;
 
