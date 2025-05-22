@@ -15,7 +15,7 @@ public class PageValidator implements ConstraintValidator<ValidPage, Integer> {
 
     @Override
     public boolean isValid(Integer value, ConstraintValidatorContext context) {
-        if (value == null || value < 1) {
+        if (value == null || value < 0) {
             throw new GeneralException(ErrorStatus.INVALID_PAGE_INDEX);
         }
         return true;
