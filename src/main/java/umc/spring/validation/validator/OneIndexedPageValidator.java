@@ -2,9 +2,11 @@ package umc.spring.validation.validator;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import org.springframework.stereotype.Component;
 import umc.spring.apiPayload.code.status.ErrorStatus;
 import umc.spring.validation.annotation.OneIndexedPage;
 
+@Component
 public class OneIndexedPageValidator implements ConstraintValidator<OneIndexedPage, Integer> {
 
     private String message;

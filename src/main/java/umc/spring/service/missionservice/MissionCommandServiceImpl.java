@@ -42,14 +42,6 @@ public class MissionCommandServiceImpl implements MissionCommandService {
             throw new MissionHandler(ErrorStatus.MISSION_EXPIRED);
         }
 
-        // 이미 도전 중인 미션인지 확인
-        boolean alreadyAccepted = member.getMemberMissionList().stream()
-                .anyMatch(mm -> mm.getMission().getId().equals(mission.getId()));
-
-        if (alreadyAccepted) {
-            throw new MissionHandler(ErrorStatus.MISSION_ALREADY_ACCEPTED);
-        }
-
         // 새로운 MemberMission 객체 생성 및 저장
         MemberMission memberMission = MemberMissionConverter.toMemberMission(mission, member);
         memberMission = memberMissionRepository.save(memberMission);

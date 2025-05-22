@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.spring.apiPayload.ApiResponse;
 import umc.spring.converter.MissionConverter;
@@ -23,6 +24,7 @@ import umc.spring.web.dto.MissionResponseDTO;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/missions")
+@Validated
 @Tag(name = "Mission", description = "미션 관련 API")
 public class MissionRestController {
 
