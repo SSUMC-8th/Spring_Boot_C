@@ -48,8 +48,8 @@ public class MissionRestController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH006", description = "access 토큰 모양이 이상함", content = @Content(schema = @Schema(implementation = ApiResponse.class)))
     })
         public ApiResponse<MissionResponseDTO.MissionUserPreViewListDTO> getMyMissionList( @ValidPage @RequestParam(name = "page") Integer page) {
-
-        Page<UserMission> missionList = missionQueryService.findAllMissions(page);
+        int zeroBasedPage = page - 1;
+        Page<UserMission> missionList = missionQueryService.findAllMissions(zeroBasedPage);
         return ApiResponse.onSuccess(MemberMissionConverter.missionUserPreViewListDTO(missionList));
     }
 
