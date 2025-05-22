@@ -10,7 +10,7 @@ import umc.spring.apiPayload.code.status.SuccessStatus;
 @Getter
 @AllArgsConstructor
 @JsonPropertyOrder({"isSuccess", "code", "message", "result"})
-public class ApiResponse<T> {
+public class BaseResponse<T> {
 
     private final Boolean isSuccess;
     private final String code;
@@ -19,16 +19,16 @@ public class ApiResponse<T> {
     private final T result;
 
 
-    public static <T> ApiResponse<T> onSuccess(T result){
-        return new ApiResponse<>(true, SuccessStatus._OK.getCode(), SuccessStatus._OK.getMessage(), result);
+    public static <T> BaseResponse<T> onSuccess(T result){
+        return new BaseResponse<>(true, SuccessStatus._OK.getCode(), SuccessStatus._OK.getMessage(), result);
     }
 
-    public static <T> ApiResponse<T> of(BaseCode code, T result){
-        return new ApiResponse<>(true, code.getReasonHttpStatus().getCode(), code.getReasonHttpStatus().getMessage(), result);
+    public static <T> BaseResponse<T> of(BaseCode code, T result){
+        return new BaseResponse<>(true, code.getReasonHttpStatus().getCode(), code.getReasonHttpStatus().getMessage(), result);
     }
 
 
-    public static <T> ApiResponse<T> onFailure(String code, String message, T data){
-        return new ApiResponse<>(false, code, message, data);
+    public static <T> BaseResponse<T> onFailure(String code, String message, T data){
+        return new BaseResponse<>(false, code, message, data);
     }
 }
