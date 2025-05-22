@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
+import umc.spring.validation.annotation.ExistStore;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class ReviewRequestDTO {
     @AllArgsConstructor
     public static class CreateReviewDTO {
         @NotNull(message = "가게 ID는 필수입니다.")
+        @ExistStore
         private Long storeId;
 
         @NotNull(message = "평점은 필수입니다.")
