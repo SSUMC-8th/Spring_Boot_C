@@ -11,6 +11,6 @@ public class PageValidator implements ConstraintValidator<ValidPage, Integer> {
     @Override
     public boolean isValid(Integer value, ConstraintValidatorContext context) {
         if (value == null) return false;
-        return value >= 0;
+        return value >= 1;
     }
 }

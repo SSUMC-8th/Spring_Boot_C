@@ -49,13 +49,13 @@ public class MemberMissionRestController {
     })
     @Parameters({
             @Parameter(name = "memberId", description = "회원 ID (path variable)"),
-            @Parameter(name = "page", description = "조회할 페이지 번호 (0 이상)")
+            @Parameter(name = "page", description = "조회할 페이지 번호 (1 이상)")
     })
     public ApiResponse<MissionResponseDTO.MemberMissionResponseDTO.PageDTO> getOngoingMissions(
             @PathVariable Long memberId,
             @ValidPage @RequestParam(name = "page") Integer page
     ) {
-        var result = memberMissionQueryService.getMyMissions(memberId, page);
+        var result = memberMissionQueryService.getMyMissions(memberId, page-1);
         return ApiResponse.onSuccess(MemberMissionConverter.toPageDTO(result));
 
     }

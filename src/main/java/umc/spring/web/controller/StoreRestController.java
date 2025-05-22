@@ -52,17 +52,17 @@ public class StoreRestController {
             description = "특정 가게가 가진 미션들의 목록을 페이징 형식으로 조회합니다.")
     @ApiResponses({
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "OK"),
-            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "page가 0보다 작거나 잘못됨", content = @Content(schema = @Schema(implementation = ApiResponse.class)))
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "page가 1보다 작거나 잘못됨", content = @Content(schema = @Schema(implementation = ApiResponse.class)))
     })
     @Parameters({
             @Parameter(name = "storeId", description = "가게 ID (PathVariable)"),
-            @Parameter(name = "page", description = "페이지 번호 (0부터 시작)")
+            @Parameter(name = "page", description = "페이지 번호 (1부터 시작)")
     })
     public ApiResponse<MissionResponseDTO.MissionPreviewListDTO> getMissionList(
             @ExistStore @PathVariable Long storeId,
             @ValidPage @RequestParam(name = "page") Integer page) {
 
-        Pageable pageable = PageRequest.of(page, 10);
+        Pageable pageable = PageRequest.of(page-1, 10);
         Slice<Mission> missionList = storeQueryService.getMissions(storeId, pageable);
         return ApiResponse.onSuccess(StoreConverter.toMissionPreviewListDTO(missionList));
     }
