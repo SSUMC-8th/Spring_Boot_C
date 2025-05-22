@@ -6,8 +6,8 @@ import umc.spring.apiPayload.exception.handler.MemberHandler;
 import umc.spring.domain.Member;
 import umc.spring.domain.enums.FoodCategory;
 import umc.spring.domain.enums.Gender;
-import umc.spring.web.dto.MemberRequestDTO;
-import umc.spring.web.dto.MemberResponseDTO;
+import umc.spring.dto.web.MemberRequestDTO;
+import umc.spring.dto.web.MemberResponseDTO;
 
 import java.util.List;
 

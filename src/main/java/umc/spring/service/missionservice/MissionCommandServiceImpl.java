@@ -17,8 +17,8 @@ import umc.spring.repository.MemberMissionRepository;
 import umc.spring.repository.MemberRepository;
 import umc.spring.repository.MissionRepository;
 import umc.spring.repository.StoreRepository;
-import umc.spring.web.dto.MissionRequestDTO;
-import umc.spring.web.dto.MissionResponseDTO;
+import umc.spring.dto.web.MissionRequestDTO;
+import umc.spring.dto.web.MissionResponseDTO;
 
 import java.time.LocalDateTime;
 

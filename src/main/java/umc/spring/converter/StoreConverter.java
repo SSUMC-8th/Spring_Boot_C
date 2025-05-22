@@ -2,8 +2,8 @@ package umc.spring.converter;
 
 import org.springframework.data.domain.Page;
 import umc.spring.domain.*;
-import umc.spring.web.dto.StoreRequestDTO;
-import umc.spring.web.dto.StoreResponseDTO;
+import umc.spring.dto.web.StoreRequestDTO;
+import umc.spring.dto.web.StoreResponseDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;

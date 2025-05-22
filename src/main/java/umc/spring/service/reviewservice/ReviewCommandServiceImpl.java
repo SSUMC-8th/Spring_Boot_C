@@ -14,8 +14,8 @@ import umc.spring.domain.enums.MissionStatus;
 import umc.spring.repository.MemberRepository;
 import umc.spring.repository.ReviewRepository;
 import umc.spring.repository.StoreRepository;
-import umc.spring.web.dto.ReviewRequestDTO;
-import umc.spring.web.dto.ReviewResponseDTO;
+import umc.spring.dto.web.ReviewRequestDTO;
+import umc.spring.dto.web.ReviewResponseDTO;
 
 import java.util.List;
 

@@ -3,8 +3,8 @@ package umc.spring.converter;
 import org.springframework.data.domain.Page;
 import umc.spring.domain.Mission;
 import umc.spring.domain.Store;
-import umc.spring.web.dto.MissionRequestDTO;
-import umc.spring.web.dto.MissionResponseDTO;
+import umc.spring.dto.web.MissionRequestDTO;
+import umc.spring.dto.web.MissionResponseDTO;
 
 import java.util.stream.Collectors;
 

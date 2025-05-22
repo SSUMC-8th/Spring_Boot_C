@@ -6,8 +6,8 @@ import umc.spring.domain.Mission;
 import umc.spring.domain.Store;
 import umc.spring.domain.enums.MissionStatus;
 import umc.spring.domain.mapping.MemberMission;
-import umc.spring.web.dto.MemberMissionResponseDTO;
-import umc.spring.web.dto.MissionResponseDTO;
+import umc.spring.dto.web.MemberMissionResponseDTO;
+import umc.spring.dto.web.MissionResponseDTO;
 
 import java.time.LocalDateTime;
 import java.time.Period;

@@ -1,6 +1,6 @@
 package umc.spring.converter;
 
-import umc.spring.web.dto.TempResponseDTO;
+import umc.spring.dto.web.TempResponseDTO;
 
 public class TempConverter {
 

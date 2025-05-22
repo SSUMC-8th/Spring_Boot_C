@@ -10,7 +10,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import umc.spring.apiPayload.code.status.ErrorStatus;
 import umc.spring.service.missionservice.MissionValidationService;
 import umc.spring.validation.annotation.NotAlreadyAccepted;
-import umc.spring.web.dto.MissionRequestDTO;
+import umc.spring.dto.web.MissionRequestDTO;
 
 @Component
 @RequiredArgsConstructor

@@ -1,4 +1,4 @@
-package umc.spring.web.dto;
+package umc.spring.dto.web;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

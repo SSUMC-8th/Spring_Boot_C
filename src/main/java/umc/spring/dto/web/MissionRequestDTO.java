@@ -1,4 +1,4 @@
-package umc.spring.web.dto;
+package umc.spring.dto.web;
 
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;

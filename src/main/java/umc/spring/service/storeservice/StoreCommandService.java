@@ -1,7 +1,7 @@
 package umc.spring.service.storeservice;
 
-import umc.spring.web.dto.StoreRequestDTO;
-import umc.spring.web.dto.StoreResponseDTO;
+import umc.spring.dto.web.StoreRequestDTO;
+import umc.spring.dto.web.StoreResponseDTO;
 
 public interface StoreCommandService {
 

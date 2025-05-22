@@ -1,7 +1,7 @@
 package umc.spring.service.missionservice;
 
-import umc.spring.web.dto.MissionRequestDTO;
-import umc.spring.web.dto.MissionResponseDTO;
+import umc.spring.dto.web.MissionRequestDTO;
+import umc.spring.dto.web.MissionResponseDTO;
 
 public interface MissionCommandService {
 

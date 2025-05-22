@@ -1,4 +1,4 @@
-package umc.spring.web.controller;
+package umc.spring.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -18,8 +18,8 @@ import umc.spring.domain.Review;
 import umc.spring.service.reviewservice.ReviewCommandService;
 import umc.spring.service.reviewservice.ReviewQueryService;
 import umc.spring.validation.annotation.OneIndexedPage;
-import umc.spring.web.dto.ReviewRequestDTO;
-import umc.spring.web.dto.ReviewResponseDTO;
+import umc.spring.dto.web.ReviewRequestDTO;
+import umc.spring.dto.web.ReviewResponseDTO;
 
 @RestController
 @RequiredArgsConstructor

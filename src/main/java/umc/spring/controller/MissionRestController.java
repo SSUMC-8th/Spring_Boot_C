@@ -1,4 +1,4 @@
-package umc.spring.web.controller;
+package umc.spring.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -18,8 +18,8 @@ import umc.spring.domain.Mission;
 import umc.spring.service.missionservice.MissionCommandService;
 import umc.spring.service.missionservice.MissionQueryService;
 import umc.spring.validation.annotation.OneIndexedPage;
-import umc.spring.web.dto.MissionRequestDTO;
-import umc.spring.web.dto.MissionResponseDTO;
+import umc.spring.dto.web.MissionRequestDTO;
+import umc.spring.dto.web.MissionResponseDTO;
 
 @RestController
 @RequiredArgsConstructor
@@ -133,6 +133,7 @@ public class MissionRestController {
 
         return ApiResponse.onSuccess(MissionConverter.toMissionListDTO(missionPage));
     }
+
 
 
 }

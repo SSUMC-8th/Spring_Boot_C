@@ -1,4 +1,4 @@
-package umc.spring.web.controller;
+package umc.spring.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -16,8 +16,8 @@ import umc.spring.converter.StoreConverter;
 import umc.spring.domain.Review;
 import umc.spring.service.storeservice.StoreCommandService;
 import umc.spring.service.storeservice.StoreQueryService;
-import umc.spring.web.dto.StoreRequestDTO;
-import umc.spring.web.dto.StoreResponseDTO;
+import umc.spring.dto.web.StoreRequestDTO;
+import umc.spring.dto.web.StoreResponseDTO;
 
 @RestController
 @RequiredArgsConstructor

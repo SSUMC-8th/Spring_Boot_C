@@ -1,4 +1,4 @@
-package umc.spring.web.controller;
+package umc.spring.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -18,9 +18,9 @@ import umc.spring.domain.mapping.MemberMission;
 import umc.spring.service.membermissionservice.MemberMissionQueryService;
 import umc.spring.service.memberservice.MemberCommandService;
 import umc.spring.validation.annotation.OneIndexedPage;
-import umc.spring.web.dto.MemberMissionResponseDTO;
-import umc.spring.web.dto.MemberRequestDTO;
-import umc.spring.web.dto.MemberResponseDTO;
+import umc.spring.dto.web.MemberMissionResponseDTO;
+import umc.spring.dto.web.MemberRequestDTO;
+import umc.spring.dto.web.MemberResponseDTO;
 
 @RestController
 @RequiredArgsConstructor
