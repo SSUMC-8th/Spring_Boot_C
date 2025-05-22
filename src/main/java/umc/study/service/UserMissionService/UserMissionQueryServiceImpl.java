@@ -7,6 +7,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import umc.study.apiPayload.code.status.ErrorStatus;
+import umc.study.apiPayload.exception.handler.TempHandler;
 import umc.study.domain.User;
 import umc.study.domain.enums.MissionStatus;
 import umc.study.domain.mapping.UserMission;
@@ -23,7 +25,7 @@ public class UserMissionQueryServiceImpl implements UserMissionQueryService {
     @Override
     public Page<UserMission> getMyOngoingMissions(Long userId, int page) {
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new EntityNotFoundException("사용자를 찾을 수 없습니다."));
+                .orElseThrow(() -> new TempHandler(ErrorStatus.USER_NOT_FOUND));
 
         Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createdAt"));
         return userMissionRepository.findAllByUserAndStatus(user, MissionStatus.CHALLENGING, pageable);

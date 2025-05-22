@@ -7,6 +7,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import umc.study.apiPayload.code.status.ErrorStatus;
+import umc.study.apiPayload.exception.handler.TempHandler;
 import umc.study.domain.Mission;
 import umc.study.domain.Store;
 import umc.study.repository.MissionRepository.MissionRepository;
@@ -22,7 +24,7 @@ public class MissionQueryServiceImpl implements MissionQueryService{
     @Override
     public Page<Mission> getMissionsByStore(Long storeId, int page) {
         Store store = storeRepository.findById(storeId)
-                .orElseThrow(() -> new EntityNotFoundException("가게가 존재하지 않습니다."));
+                .orElseThrow(() -> new TempHandler(ErrorStatus.STORE_NOT_FOUND));
         Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.DESC, "createdAt"));
         return missionRepository.findAllByStore(store, pageable);
     }

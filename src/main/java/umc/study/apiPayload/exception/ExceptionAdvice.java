@@ -72,12 +72,6 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, errorReasonHttpStatus, null, request);
     }
 
-//    @ExceptionHandler(ConstraintViolationException.class)
-//    public ResponseEntity<ApiResponse<?>> handleValidation(ConstraintViolationException e) {
-//        return ResponseEntity.badRequest()
-//                .body(ApiResponse.onFailure("PAGE400", "page 값이 1 이상이어야 합니다.",null));
-//    }
-
     private ResponseEntity<Object> handleExceptionInternal(Exception e, ErrorReasonDTO reason,
                                                            HttpHeaders headers, HttpServletRequest request) {
 
