@@ -1,5 +1,6 @@
 package umc.spring.converter;
 
+import lombok.extern.slf4j.Slf4j;
 import umc.spring.apiPayload.code.status.ErrorStatus;
 import umc.spring.apiPayload.exception.handler.FoodHandler;
 import umc.spring.apiPayload.exception.handler.MemberHandler;
@@ -11,6 +12,7 @@ import umc.spring.dto.web.MemberResponseDTO;
 
 import java.util.List;
 
+@Slf4j
 public class MemberConverter {
 
     public static MemberResponseDTO.JoinResultDTO toJoinResultDTO(Member member) {
@@ -29,10 +31,13 @@ public class MemberConverter {
         // Member 생성
         Member member = Member.builder()
                 .name(request.getName())
+                .email(request.getEmail())
+                .password(request.getPassword())
                 .gender(gender)
                 .birthDate(request.getBirthDate())
                 .address(request.getAddress())
                 .specAddress(request.getSpecAddress())
+                .role(request.getRole())
                 .build();
 
         // 선호도 추가
@@ -45,6 +50,7 @@ public class MemberConverter {
 
     // Gender 변환 로직 분리
     private static Gender convertGender(Integer genderCode) {
+
         if (genderCode == null) {
             throw new MemberHandler(ErrorStatus.INVALID_GENDER);
         }
