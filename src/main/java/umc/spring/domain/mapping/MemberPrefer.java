@@ -26,15 +26,20 @@ public class MemberPrefer extends BaseEntity {
     private FoodCategory foodCategory;
 
     public static MemberPrefer createMemberPrefer(Member member, FoodCategory foodCategory) {
-        MemberPrefer memberPrefer = MemberPrefer.builder()
-                .foodCategory(foodCategory)
+        return MemberPrefer.builder()
                 .member(member)
+                .foodCategory(foodCategory)
                 .build();
+    }
 
-        // 양방향 관계 설정 (Member 쪽에도 이 MemberPrefer 추가)
-        member.getMemberPreferList().add(memberPrefer);
-
-        return memberPrefer;
+    public void setMember(Member member) {
+        if (this.member != null) {
+            this.member.getMemberPreferList().remove(this);
+        }
+        this.member = member;
+        if (member != null && !member.getMemberPreferList().contains(this)) {
+            member.getMemberPreferList().add(this);
+        }
     }
 
 }

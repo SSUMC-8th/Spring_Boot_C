@@ -1,8 +1,13 @@
 package umc.spring.service.reviewservice;
 
-import umc.spring.web.dto.ReviewResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import umc.spring.domain.Review;
+import umc.spring.dto.web.ReviewResponseDTO;
 
 public interface ReviewQueryService {
 
-    ReviewResponse.ReviewDetailDTO getReviewDetail(Long reviewId);
+    ReviewResponseDTO.ReviewDetailDTO getReviewDetail(Long reviewId);
+
+    Page<Review> getMyReviewsForStore(Long storeId, Long memberId, Pageable pageable);
 }

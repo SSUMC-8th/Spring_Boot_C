@@ -18,7 +18,8 @@ public enum ErrorStatus implements BaseErrorCode {
 
     // 멤버 관련 에러
     MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "MEMBER4001", "사용자가 없습니다."),
-    NICKNAME_NOT_EXIST(HttpStatus.BAD_REQUEST, "MEMBER4002", "닉네임은 필수 입니다."),
+    INVALID_GENDER(HttpStatus.BAD_REQUEST, "MEMBER4002", "유효하지 않은 성별 정보입니다."),
+    INVALID_MEMBER_DATA(HttpStatus.BAD_REQUEST, "MEMBER4003", "유효하지 않은 회원 정보입니다."),
 
     // 음식 관련 에러
     FOOD_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "FOOD4001", "음식 카테고리가 없습니다."),
@@ -27,16 +28,26 @@ public enum ErrorStatus implements BaseErrorCode {
     LOCATION_NOT_FOUND(HttpStatus.NOT_FOUND, "LOCATION4001", "위치가 없습니다."),
 
     // 가게 관련 에러
-    STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "REVIEW4002", "가게를 찾을 수 없습니다."),
+    STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "STORE4001", "가게를 찾을 수 없습니다."),
 
     // 미션 관련 에러
     MISSION_NOT_FOUND(HttpStatus.NOT_FOUND, "MISSION4001", "미션을 찾을 수 없습니다."),
     MISSION_EXPIRED(HttpStatus.BAD_REQUEST, "MISSION4002", "만료된 미션입니다."),
     MISSION_ALREADY_ACCEPTED(HttpStatus.BAD_REQUEST, "MISSION4003", "이미 도전 중인 미션입니다."),
+    MISSION_NOT_IN_PROGRESS(HttpStatus.BAD_REQUEST, "MISSION4004", "진행중인 미션이 아닙니다."),
+    MISSION_COMPLETION_FAILED(HttpStatus.BAD_REQUEST, "MISSION4005", "미션 완료 처리에 실패했습니다."),
 
-    // 예시
-    ARTICLE_NOT_FOUND(HttpStatus.NOT_FOUND, "ARTICLE4001", "게시글이 없습니다."),
+    // 멤버 미션 관련 에러
+    MEMBER_MISSION_NOT_FOUND(HttpStatus.NOT_FOUND, "MEMBER_MISSION4001", "회원 미션을 찾을 수 없습니다."),
+
+    // 리뷰 관련 에러
+    REVIEW_NOT_FOUND(HttpStatus.NOT_FOUND, "REVIEW4001", "리뷰를 찾을 수 없습니다."),
+
+    // 페이징 관련 에러
+    INVALID_PAGE_NUMBER(HttpStatus.BAD_REQUEST, "PAGE4001", "페이지 번호는 1 이상이어야 합니다."),
+
     TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "이거는 테스트");
+
 
     private final HttpStatus httpStatus;
     private final String code;
