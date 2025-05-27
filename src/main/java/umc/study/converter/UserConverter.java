@@ -36,12 +36,22 @@ public class UserConverter {
         }
 
         return User.builder()
+                .name(request.getName())
+                .email(request.getEmail())   // 추가된 코드
+                .password(request.getPassword())
                 .address(request.getAddress())
                 .specAddress(request.getSpecAddress())
                 .gender(gender)
                 .age(request.getAge())
                 .name(request.getName())
+                .role(request.getRole())
                 .preferenceFoodList(new ArrayList<>())
                 .build();
     }
+
+
+        public static UserResponseDTO.LoginResultDTO toLoginResultDTO(Long userId, String accessToken) {
+            return new UserResponseDTO.LoginResultDTO(userId, accessToken);
+        }
+
 }

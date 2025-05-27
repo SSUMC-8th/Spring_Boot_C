@@ -31,7 +31,12 @@ public enum ErrorStatus implements BaseErrorCode {
     MISSION_NOT_FOUND(HttpStatus.NOT_FOUND, "M002", "해당 미션을 찾을 수 없습니다."),
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "U001", "해당 사용자를 찾을 수 없습니다."),
     REGION_NOT_FOUND(HttpStatus.NOT_FOUND, "R001", "해당 지역을 찾을 수 없습니다."),
-    STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "S001", "해당 가게를 찾을 수 없습니다.");
+    STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "S001", "해당 가게를 찾을 수 없습니다."),
+
+    //로그인 에러
+    INVALID_PASSWORD(HttpStatus.UNAUTHORIZED, "AUTH_002", "유효하지 않은 비밀번호입니다."),
+    INVALID_TOKEN(HttpStatus.UNAUTHORIZED, "AUTH_001", "유효하지 않은 토큰입니다.");
+
 
 
 

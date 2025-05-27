@@ -8,6 +8,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import umc.study.domain.common.BaseEntity;
 import umc.study.domain.enums.Gender;
 import umc.study.domain.enums.MemberStatus;
+import umc.study.domain.enums.Role;
 import umc.study.domain.enums.SocialType;
 import umc.study.domain.mapping.Agreement;
 import umc.study.domain.mapping.UserMission;
@@ -37,6 +38,9 @@ public class User extends BaseEntity {
     private String address;
 
     @Column(nullable = false, length = 40)
+    private String password;
+
+    @Column(nullable = false, length = 40)
     private String specAddress;
 
     @Enumerated(EnumType.STRING)
@@ -45,15 +49,15 @@ public class User extends BaseEntity {
 
     private Integer age;
 
-    @Column(name = "birth_date", nullable = false)
+    @Column(name = "birth_date")
     private LocalDate birthDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 10)
+    @Column(length = 10)
     private SocialType socialType;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 15)
+    @Column(length = 15)
     private MemberStatus status;
 
     private LocalDate inactiveDate;
@@ -63,6 +67,9 @@ public class User extends BaseEntity {
 
     @ColumnDefault("0")
     private Integer point;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Agreement> agreementList = new ArrayList<>();
@@ -78,5 +85,9 @@ public class User extends BaseEntity {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Ask> askList = new ArrayList<>();
+
+    public void encodePassword(String password) {
+        this.password = password;
+    }
 
 }
