@@ -26,6 +26,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.hibernate.orm:hibernate-core:6.0.2.Final'  // Hibernate 6.0.2 이상
 	implementation 'mysql:mysql-connector-java:8.0.33'  // MySQL 드라이버 추가
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
 	// QueryDSL (Jakarta 지원 버전 사용 중)
 	implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
@@ -39,6 +40,9 @@ dependencies {
 	implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
 	implementation 'org.springdoc:springdoc-openapi-data-rest:1.6.9'
 	implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

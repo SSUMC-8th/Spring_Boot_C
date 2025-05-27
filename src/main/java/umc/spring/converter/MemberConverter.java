@@ -34,9 +34,12 @@ public class MemberConverter {
         }
 
         return User.builder()
+                .email(request.getEmail())
+                .password(request.getPassword())
                 .address(request.getAddress())
                 .gender(gender)
                 .name(request.getName())
+                .role(request.getRole())
                 .userFoodList(new ArrayList<>())
                 .build();
     }

@@ -7,6 +7,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.enums.Gender;
+import umc.spring.domain.enums.Role;
 import umc.spring.domain.enums.SocialType;
 import umc.spring.domain.enums.UserStatus;
 import umc.spring.domain.mapping.UserAgree;
@@ -33,7 +34,7 @@ public class User extends BaseEntity {
     @Column(nullable = false, length = 20)
     private String name;
 
-    //@Column(nullable = false, length = 40)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Enumerated(EnumType.STRING)
@@ -59,7 +60,17 @@ public class User extends BaseEntity {
     @Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'")
     private UserStatus status;
 
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     private LocalDate inactiveDate;
+
+    public void encodePassword(String password) {
+        this.password = password;
+    }
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Review> reviewList = new ArrayList<>();
