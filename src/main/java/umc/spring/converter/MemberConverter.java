@@ -17,6 +17,21 @@ public class MemberConverter {
                 .build();
     }
 
+    public static MemberResponseDTO.MemberInfoDTO toMemberInfoDTO(User user) {
+        return MemberResponseDTO.MemberInfoDTO.builder()
+                .name(user.getName())
+                .email(user.getEmail())
+                .gender(user.getGender().name())
+                .build();
+    }
+
+    public static MemberResponseDTO.LoginResultDTO toLoginResultDTO(Long memberId, String accessToken) {
+        return MemberResponseDTO.LoginResultDTO.builder()
+                .memberId(memberId)
+                .accessToken(accessToken)
+                .build();
+    }
+
     public static User toUser(MemberRequestDTO.JoinDto request){
 
         Gender gender = null;
