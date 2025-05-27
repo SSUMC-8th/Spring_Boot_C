@@ -10,6 +10,7 @@ import umc.spring.domain.enums.Gender;
 import umc.spring.dto.web.MemberRequestDTO;
 import umc.spring.dto.web.MemberResponseDTO;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
@@ -48,6 +49,21 @@ public class MemberConverter {
         return member;
     }
 
+    public static MemberResponseDTO.LoginResultDTO toLoginResultDTO(Long memberId, String accessToken) {
+        return MemberResponseDTO.LoginResultDTO.builder()
+                .memberId(memberId)
+                .accessToken(accessToken)
+                .build();
+    }
+
+    public static MemberResponseDTO.MemberInfoDTO toMemberInfoDTO(Member member) {
+        return MemberResponseDTO.MemberInfoDTO.builder()
+                .name(member.getName())
+                .email(member.getEmail())
+                .gender(convertGenderToString(member.getGender()))
+                .build();
+    }
+
     // Gender 변환 로직 분리
     private static Gender convertGender(Integer genderCode) {
 
@@ -78,5 +94,17 @@ public class MemberConverter {
                     }
                 })
                 .toList();
+    }
+
+    private static String convertGenderToString(umc.spring.domain.enums.Gender gender) {
+        if (gender == null) {
+            return "선택안함";
+        }
+
+        return switch (gender) {
+            case MALE -> "남성";
+            case FEMALE -> "여성";
+            default -> "선택안함";
+        };
     }
 }
