@@ -1,4 +1,4 @@
-package umc.spring.apiPayload.code;
+package umc.spring.web.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
