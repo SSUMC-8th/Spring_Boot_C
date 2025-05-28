@@ -12,6 +12,7 @@ import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.enums.FoodCategory;
 import umc.spring.domain.enums.Gender;
 import umc.spring.domain.enums.MemberStatus;
+import umc.spring.domain.enums.Role;
 import umc.spring.domain.mapping.MemberAgree;
 import umc.spring.domain.mapping.MemberMission;
 import umc.spring.domain.mapping.MemberPrefer;
@@ -61,9 +62,14 @@ public class Member extends BaseEntity {
     private LocalDateTime inactiveDate;
 
     @Email(message = "이메일 형식이 올바르지 않습니다")
-    @Column(length = 50, unique = true)
-    @Nullable
+    @Column(length = 50, unique = true, nullable = false)
     private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @Column(length = 20)
     @Nullable
@@ -91,6 +97,10 @@ public class Member extends BaseEntity {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<Notification> notificationList = new ArrayList<>();
+
+    public void encodePassword(String password) {
+        this.password = password;
+    }
 
     public void addFoodPreferences(List<FoodCategory> foodCategories) {
         // 기존 선호도 제거

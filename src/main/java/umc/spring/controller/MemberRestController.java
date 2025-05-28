@@ -4,10 +4,14 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import umc.spring.apiPayload.BaseResponse;
 import umc.spring.converter.MemberConverter;
@@ -18,6 +22,7 @@ import umc.spring.dto.web.*;
 import umc.spring.service.membermissionservice.MemberMissionCommandService;
 import umc.spring.service.membermissionservice.MemberMissionQueryService;
 import umc.spring.service.memberservice.MemberCommandService;
+import umc.spring.service.memberservice.MemberQueryService;
 import umc.spring.validation.annotation.OneIndexedPage;
 
 @RestController
@@ -26,16 +31,32 @@ import umc.spring.validation.annotation.OneIndexedPage;
 public class MemberRestController {
 
     private final MemberCommandService memberCommandService;
+    private final MemberQueryService memberQueryService;
     private final MemberMissionQueryService memberMissionQueryService;
     private final MemberMissionCommandService memberMissionCommandService;
     private final static int PAGE_SIZE = 10;
 
-    @PostMapping("/")
+    @PostMapping("/join")
     public BaseResponse<MemberResponseDTO.JoinResultDTO> join(@RequestBody @Valid MemberRequestDTO.JoinDTO request) {
 
         Member member = memberCommandService.joinMember(request);
 
         return BaseResponse.onSuccess(MemberConverter.toJoinResultDTO(member));
+    }
+
+    @PostMapping("/login")
+    @Operation(summary = "유저 로그인 API",description = "유저가 로그인하는 API입니다.")
+    public BaseResponse<MemberResponseDTO.LoginResultDTO> login(@RequestBody @Valid MemberRequestDTO.LoginRequestDTO request) {
+        return BaseResponse.onSuccess(memberCommandService.loginMember(request));
+    }
+
+    @GetMapping("/info")
+    @Operation(summary = "유저 내 정보 조회 API - 인증 필요",
+            description = "유저가 내 정보를 조회하는 API입니다.",
+            security = { @SecurityRequirement(name = "JWT TOKEN") }
+    )
+    public BaseResponse<MemberResponseDTO.MemberInfoDTO> getMyInfo(HttpServletRequest request) {
+        return BaseResponse.onSuccess(memberQueryService.getMemberInfo(request));
     }
 
     @GetMapping("/{memberId}/missions/in-progress")
