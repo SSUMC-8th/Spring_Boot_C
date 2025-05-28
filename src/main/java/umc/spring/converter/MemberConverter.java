@@ -1,7 +1,7 @@
 package umc.spring.converter;
 
-import umc.spring.apiPayload.code.MemberRequestDTO;
-import umc.spring.apiPayload.code.MemberResponseDTO;
+import umc.spring.web.dto.MemberRequestDTO;
+import umc.spring.web.dto.MemberResponseDTO;
 import umc.spring.domain.Member;
 import umc.spring.domain.enums.Gender;
 
@@ -32,13 +32,37 @@ public class MemberConverter {
                 break;
         }
 
+        LocalDate birthDate = LocalDate.of(
+            request.getBirthYear(),
+            request.getBirthMonth(),
+            request.getBirthDay()
+        );
+
         return Member.builder()
                 .address(request.getAddress())                         // 주소는 String
-                .birth(request.getBirth().toLocalDate())
+                .birth(birthDate)
                 .gender(gender)
                 .name(request.getName())
                 .memberAgreeList(new ArrayList<>())
+                .email(request.getEmail())
+                .password(request.getPassword())
+                .role(request.getRole())
                 .build();
-
     }
+
+    public static MemberResponseDTO.LoginResultDTO toLoginResultDTO(Long memberId, String accessToken) {
+        return MemberResponseDTO.LoginResultDTO.builder()
+                .memberId(memberId)
+                .accessToken(accessToken)
+                .build();
+    }
+
+    public static MemberResponseDTO.MemberInfoDTO toMemberInfoDTO(Member member) {
+        return MemberResponseDTO.MemberInfoDTO.builder()
+                .memberId(member.getId())
+                .name(member.getName())
+                .email(member.getEmail())
+                .build();
+    }
+
 }

@@ -26,7 +26,9 @@ public enum ErrorStatus implements BaseErrorCode {
     TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001","이거는 테스트"),
 
     STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "STORE404", "존재하지 않는 가게입니다."),
-    PAGE_OUT_OF_RANGE(HttpStatus.BAD_REQUEST, "PAGE400", "페이지 번호는 1 이상이어야 합니다.");
+    PAGE_OUT_OF_RANGE(HttpStatus.BAD_REQUEST, "PAGE400", "페이지 번호는 1 이상이어야 합니다."),
+    INVALID_TOKEN(HttpStatus.UNAUTHORIZED,"AUTH001", "유효하지 않은 토큰입니다."),
+    INVALID_PASSWORD(HttpStatus.UNAUTHORIZED,"AUTH002", "비밀번호가 올바르지 않습니다.");
 
 
 
