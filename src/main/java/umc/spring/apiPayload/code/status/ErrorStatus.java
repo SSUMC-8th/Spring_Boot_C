@@ -26,6 +26,9 @@ public enum ErrorStatus implements BaseErrorCode {
     // For test
     TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "이거는 테스트"),
 
+    INVALID_TOKEN(HttpStatus.BAD_REQUEST,"AUTH4001","유효하지 않은 토큰입니다"),
+    INVALID_PASSWORD(HttpStatus.BAD_REQUEST,"AUTH4002","유효하지 않은 비밀번호입니다"),
+
     // 멤버 관려 에러
     MEMBER_NOT_FOUND(HttpStatus.BAD_REQUEST, "MEMBER4001", "사용자가 없습니다."),
     NICKNAME_NOT_EXIST(HttpStatus.BAD_REQUEST, "MEMBER4002", "닉네임은 필수 입니다."),
