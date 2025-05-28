@@ -6,7 +6,9 @@ import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,6 +21,7 @@ import umc.study.domain.User;
 import umc.study.repository.UserRepository.UserRepository;
 import umc.study.service.ReviewService.ReviewQueryService;
 import umc.study.service.UserService.UserCommandService;
+import umc.study.service.UserService.UserQueryService;
 import umc.study.validation.annotation.ValidPage;
 import umc.study.web.dto.requestDTO.UserRequestDTO;
 import umc.study.web.dto.responseDTO.UserResponseDTO;
@@ -33,6 +36,7 @@ public class UserRestController {
 
     private final UserCommandService userCommandService;
     private final ReviewQueryService reviewQueryService;
+    private final UserQueryService userQueryService;
 
     private final UserRepository userRepository;
 
@@ -59,6 +63,21 @@ public class UserRestController {
 
         Page<Review> reviewPage = reviewQueryService.getMyReviews(user, zeroBasedPage);
         return ApiResponse.onSuccess(ReviewConverter.toMyReviewListDTO(reviewPage));
+    }
+
+    @PostMapping("/login")
+    @Operation(summary = "유저 로그인 API",description = "유저가 로그인하는 API입니다.")
+    public ApiResponse<UserResponseDTO.LoginResultDTO> login(@RequestBody @Valid UserRequestDTO.LoginRequestDTO request) {
+        return ApiResponse.onSuccess(userCommandService.loginUser(request));
+    }
+
+    @GetMapping("/info")
+    @Operation(summary = "유저 내 정보 조회 API - 인증 필요",
+            description = "유저가 내 정보를 조회하는 API입니다.",
+            security = { @SecurityRequirement(name = "JWT TOKEN") }
+    )
+    public ApiResponse<UserResponseDTO.UserInfoDTO> getMyInfo(HttpServletRequest request) {
+        return ApiResponse.onSuccess(userQueryService.getUserInfo(request));
     }
 
 
